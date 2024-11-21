@@ -11,7 +11,7 @@ require('dotenv').config();
 const app = express();
 
 const corsOptions = {
-    origin: ['https://happening-in-agra.vercel.app', 'https://happeninginagra.com', 'https://mediax-hia.vercel.app', 'https://mediax-hia-backend.vercel.app'],
+    origin: ['https://mediax-hia-blue.vercel.app','https://happening-in-agra.vercel.app', 'https://happeninginagra.com', 'https://mediax-hia.vercel.app', 'https://mediax-hia-backend.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
