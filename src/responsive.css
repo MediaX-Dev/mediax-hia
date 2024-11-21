@@ -1,0 +1,437 @@
+/* Extra large devices (1200px and down) */
+
+@media screen and (max-width: 1400px) {
+    .admin-logo {
+        width: 130px;
+        height: 130px;
+        padding: 10px;
+    }
+
+    .ad-tab-btn {
+        padding: 10px;
+    }
+
+    .admin-sidebar {
+        padding: 50px 10px;
+    }
+}
+
+/* Extra large devices (1200px and down) */
+
+@media screen and (max-width: 1200px) {
+
+    .sor-date .form-select,
+    .sor-date .form-control {
+        padding: 10px 8px;
+        max-width: 185px;
+        min-width: 100px;
+        font-size: 14px;
+    }
+
+    .sor-date .sor-icon {
+        position: absolute;
+        right: 8px;
+        top: 0;
+        transform: translateY(50%);
+    }
+
+    .sor-border {
+        border-left: 1px solid #f1f1f1;
+        margin: 0px 10px;
+    }
+
+    .nav-btn {
+        font-size: 30px;
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    .admin-sidebar .close {
+        opacity: 1;
+    }
+
+    .admin-sidebar {
+        width: 210px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: all .5s;
+    }
+
+    .admin-sidebar.active {
+        transform: translateX(0%);
+    }
+    .hero h1 {
+        font-size: 70px;
+    }
+}
+
+
+/* Large devices (992px and down) */
+
+@media screen and (max-width: 992px) {
+
+    .boobit-container,
+    .boobit-box {
+        padding: 30px;
+    }
+
+    /* #boobit-img {
+        transform: scale(.7);
+    } */
+    .hero h1 {
+        font-size: 50px;
+    }
+    .hero h1 img {
+        transform: translate(0px, -40%);
+        max-width: 100px;
+    }
+}
+
+
+/* Medium devices (768px and down) */
+
+@media screen and (max-width: 768px) {
+    .container-xxl {
+        padding: 0px 20px;
+    }
+
+    .boobit-container {
+        padding: 0;
+        background-color: var(--white);
+    }
+
+    .boobit-box {
+        padding: 0px;
+    }
+
+    h1 {
+        font-size: calc(40px*.8);
+    }
+
+    h2 {
+        font-size: calc(32px*.8);
+    }
+
+    .hoitwo-pera {
+        padding: 15px;
+    }
+
+    .post-listing {
+        padding: 24px;
+    }
+
+    .napr-img img {
+        max-width: 40px;
+        min-width: 40px;
+    }
+
+    .nav-btn {
+        font-size: 18px;
+    }
+
+    .nav-search .form-control {
+        padding: 10px 10px 10px 40px;
+        font-size: 14px;
+
+    }
+
+    .nav-search form .fal {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        font-size: 15px;
+        color: #7B7B7D;
+    }
+
+    .napr-name .name {
+        font-size: 16px;
+    }
+
+    .napr-name .admin {
+        font-size: 12px;
+    }
+
+    .user-data-list-item .user-name,
+    .user-data-list-item .user-date,
+    .user-data-list-item .user-status,
+    .user-data-list-item .user-payment {
+        font-size: 12px;
+    }
+
+    .usdahe-text {
+        font-size: 14px;
+    }
+
+    /* Policy Pages */
+    .policy {
+        padding: 40px 0px;
+    }
+
+    .policy-sidebar {
+        border-radius: 0px;
+    }
+
+    .policy-sidebar li a {
+        padding: 10px 5px;
+    }
+
+    .policy-main {
+        padding: 30px;
+    }
+
+    .policy-main h2 {
+        font-size: 24px;
+    }
+
+    .policy-main h3 {
+        font-size: 20px;
+    }
+
+    .policy-main p {
+        font-size: 16px;
+    }
+
+    .faq-btn-box li .d-flex .far,
+    .policy-sidebar li a .far {
+        transform: rotate(90deg) !important;
+    }
+
+    .faq-h .faq-icon {
+        width: 25px !important;
+        height: 25px !important;
+        line-height: 25px !important;
+        font-size: 16px;
+    }
+
+    .instDesk {
+        display: none;
+    }
+
+    .instTab {
+        display: block;
+    }
+
+    .faq-text p {
+        font-size: 14px;
+    }
+    .contact-us .container-xxl{
+        padding: 50px 30px;
+    }
+    .th-icon {
+        max-width: 100px;
+    }
+    .hero{
+        padding: 100px 0px;
+    }
+}
+
+
+/* Small devices (576px and down) */
+
+@media screen and (max-width: 576px) {
+    h1 {
+        font-size: calc(40px*.7);
+    }
+
+    h2 {
+        font-size: calc(32px*.7);
+    }
+
+    .hero h1 {
+        padding: 0px;
+        margin-bottom: 20px;
+    }
+
+    /* .boobit-left {
+        width: 100%;
+        height: 455px;
+        position: relative;
+        bottom: 170px;
+    }
+
+    #boobit-img {
+        transform: scale(.6) translate(0px, 150px) !important;
+    } */
+    .boobit-img-container {
+        transform: scale(.7) ;
+    }
+
+    .boobit-box {
+        padding: 0px;
+    }
+
+    .th-btn {
+        min-width: auto;
+        padding: 10px 15px;
+    }
+
+    #apply-change {
+        min-width: auto;
+        margin-top: 0px;
+        padding: 10px 15px;
+    }
+
+    .fo-box {
+        flex-direction: column;
+    }
+
+    .fo-line {
+        width: 100%;
+        background-color: var(--white);
+        height: 2px;
+    }
+
+    .hoitwo-img {
+        width: 100% !important;
+    }
+
+    .th-btn {
+        font-size: 16px;
+    }
+
+    .hoitwo-box {
+        padding: 25px;
+    }
+
+    .sorting-feature {
+        flex-direction: column;
+    }
+
+    .sort-by-date {
+        padding: 10px 20px !important;
+    }
+
+    .sor-date .form-select,
+    .sor-date .form-control {
+        min-width: auto;
+    }
+
+    footer {
+        padding: 40px 0px;
+    }
+
+    /* footer .hia-insta,
+    footer .foot-brand {
+        max-width: 200px;
+        margin: 0;
+    } */
+
+    .foot-link {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .foot-link ul li {
+        margin-top: 10px;
+    }
+
+    .foot-link ul {
+        margin-top: 20px;
+    }
+
+    .policy-main {
+        padding: 20px;
+    }
+
+    .faq-h {
+        padding: 15px;
+    }
+
+    /* .faq-text {
+        padding: 15px;
+    } */
+    .faq-h h5 {
+        max-width: 350px;
+        font-size: 15px;
+    }
+    .faq-text{
+        padding: 10px;
+    }
+
+    .instDesk {
+        display: none;
+    }
+
+    .instTab {
+        display: none;
+    }
+
+    .instMob {
+        display: block;
+    }
+
+    #header .sign-up {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    #header .sign-out .fas,
+    #header .sign-in .fas {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+    }
+    .th-btn.outline,
+    .th-btn.fill {
+        width: 100%;
+    }
+    .contact-us .container-xxl{
+        padding: 40px 20px;
+    }
+    .con-left{
+        padding: 20px;
+    }
+    .con-left a .con-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        line-height: 40px;
+        text-align: center;
+        border-radius: 50%;
+        color: var(--white);
+        border: 2px solid var(--whitesmoke);
+        transition: all .5s;
+        font-size:14px;
+    }
+    .hoitwo-img{
+        max-width: 250px;
+        margin: auto;
+        margin-bottom: 20px;
+    } 
+    .rw-widget-picker,
+    .rw-widget-input,
+    .form-control, .form-select{
+        font-size: 14px !important;
+        padding: 10px;
+    }
+    .crop-img .th-btn{
+        margin-top: 15px;
+    }
+    .crop-img-container{
+        width: calc(100% - 40px);
+
+        padding: 20px;
+    }
+    .hero {
+        padding: 50px 0px;
+    }
+    .hero h1 {
+        font-size: 24px;
+    }
+    .hero h1 img{
+        max-width: 50px;
+    }
+    .hoitwo-pera{
+        margin: 0px;
+    }
+    .hoitwo-box{
+        padding-top: 0px;
+    }
+}

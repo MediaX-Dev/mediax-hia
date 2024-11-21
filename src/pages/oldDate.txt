@@ -1,0 +1,3 @@
+// TEST mode to PRODUCTION mode
+Cashfree.XEnvironment = Cashfree.Environment.PRODUCTION;
+ mode: "production"

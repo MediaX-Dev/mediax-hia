@@ -1,0 +1,130 @@
+import { getDoc, doc } from "firebase/firestore";
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import { db } from "../firebase.config";
+import { useAuthAdmin } from "../hooks/useAuthAdmin";
+import { toast } from "react-toastify";
+import Spinner from "../component/Spinner";
+function EditListing() {
+    const { listingId } = useParams();
+    const [editData, setEditData] = useState(null);
+    const navigate = useNavigate();
+    const { checkAdmin } = useAuthAdmin(); // Fixed the typo here
+
+    useEffect(() => {
+        if (!checkAdmin) {
+            toast.error('You are not Admin');
+            navigate('/');
+            return; // Early return if not admin
+        }
+    }, [checkAdmin]);
+
+    useEffect(() => {
+        const fetchEditData = async () => {
+            try {
+                const docRef = doc(db, 'listings', listingId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    setEditData(docSnap.data());
+                } else {
+                    toast.error("Listing not found");
+                    navigate('/'); // Navigate away if the listing doesn't exist
+                }
+            } catch (error) {
+                toast.error(error.message);
+            }
+        };
+
+        fetchEditData();
+    }, [listingId]);
+
+    const formatDate = (timestamp) => {
+        if (!timestamp) return ''; // Handle undefined or null timestamps
+        const date = timestamp.toDate();
+        return date.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+        }).replace(/\./g, ''); // Remove dots after the abbreviated month
+    };
+
+    if (!editData) {
+        return Spinner; // Show a loading state until data is fetched
+    }
+
+    return (
+        <div className="row justify-content-center mt-5">
+            <h1 className="text-center mb-5">Edit {editData && editData.name}'s Listing </h1>
+            <div class="col-md-5 order-md-0">
+                <div class="boobit-right">
+                    <form>
+                        <div class="mb-3">
+                            <label htmlFor="" className="form-label">Slot No:</label>
+                            <input type="text" class="form-control" disabled={true} value={editData && editData.slotNumber} />
+                        </div>
+                        <div class="mb-3">
+                            <label htmlFor="" className="form-label">Name:</label>
+                            <input type="text" class="form-control" disabled={true} value={editData && editData.name} />
+                        </div>
+                        <div class="mb-3">
+                            <label htmlFor="" className="form-label">Email:</label>
+                            <input type="text" class="form-control" disabled={true} value={editData && editData.gmail} />
+                        </div>
+                        <div class="mb-3">
+                            <label htmlFor="" className="form-label">Date of Posting:</label>
+                            <input type="text" class="form-control" disabled={true} value={formatDate(editData && editData.dateOfPosting)} />
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-select" name="postStatus" id="postStatus" >
+                                <option selected>Select Payment</option>
+                                <option value="true">Paid</option>
+                                <option value="false">Unpaid</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-select" name="payment" id="payment" >
+                                <option selected>Select Payment</option>
+                                <option value="true">Paid</option>
+                                <option value="false">Unpaid</option>
+                            </select>
+                        </div>
+
+                        {/* <div class="mb-3">
+                            <select class="form-select" id="service-select" value={memoService} onChange={(memo) => setMemoService(memo.target.value)}>
+                                <option selected>Service</option>
+                                <option value="Memorial1">Memorial1</option>
+                                <option value="Memorial2">Memorial2</option>
+                                <option value="Memorial3">Memorial3</option>
+                                <option value="Memorial4">Memorial4</option>
+                            </select>
+                        </div> */}
+                        {/* <div class="mb-3">
+                            <select class="form-select" id="service-time-select" value={serviceTime} onChange={(time) => setServiceTime(time.target.value)}>
+                                <option selected>Time of service</option>
+                                <option value="10 am - 12:30 pm">10 am - 12:30 pm</option>
+                                <option value="11 am - 12:30 pm">11 am - 12:30 pm</option>
+                                <option value="12 am - 12:30 pm">12 am - 12:30 pm</option>
+                            </select>
+                        </div> */}
+                    </form>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default EditListing
+
+
+const listing = {
+    dateOfPosting:23 August 2024 at 00:00:00 UTC+5:30,
+    gmail:"hello@mediax.co.in",
+    imageUrl:"https://firebasestorage.googleapis.com/v0/b/happening-in-agra.appspot.com/o/images%2F58a1f0d7-ecf1-4e14-8924-b4e96c1dd404.jpg?alt=media&token=72dd9df3-4482-4b0e-9971-529e5bfd6256",
+    listingCreated:true,
+    name:"Yash",
+    payment:false,
+    postStatus:false,
+    slotNumber:2,
+    userId:"GrBuHzOdRtc8egfdkwXr4dEKmL93"
+}
