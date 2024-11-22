@@ -69,7 +69,6 @@ function Footer() {
                     First Floor, 4 & 5, Block No: S-17,
                     Sanjay Place, Agra, Uttar Pradesh:- 282002 
                   </div>
-                  V.1, V.2, V.3
                 </a>
                 </li>
               </ul>
