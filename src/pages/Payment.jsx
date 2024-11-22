@@ -199,7 +199,7 @@ function Payment() {
       cashfree.checkout(checkoutOptions).then(async (res) => {
         console.log("payment initialized")
         if (await verifyPayment(orderId)) {
-          await updatePaymentStatus(orderId)
+           updatePaymentStatus(orderId)
         }
       })
     } catch (error) {
