@@ -57,7 +57,7 @@ app.get('/payment', (req, res) => {
             "order_currency": "INR",
             "order_id": generateOrderId(),
             "customer_details": {
-                "customer_id": Date.now(),
+                "customer_id": `${Date.now()}`,
                 "customer_phone": "9999999999",
                 "customer_name": "Web Codder",
                 "customer_email": "webcodder@example.com"
