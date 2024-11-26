@@ -10,6 +10,7 @@ import { load } from '@cashfreepayments/cashfree-js'
 
 function Payment() {
   // const [responseId, setResponseId] = useState('');
+  const [orderDetails, setOrderDetails] = useState({})
   const [listingData, setListingData] = useState({})
   const navigate = useNavigate()
   useEffect(() => {
@@ -131,11 +132,9 @@ function Payment() {
       if (res.data && res.data.payment_session_id) {
 
         console.log(res.data)
-        setOrderId(res.data.order_id)
+        setOrderDetails(res.data)
         return res.data.payment_session_id
       }
-
-
     } catch (error) {
       console.log(error)
     }
@@ -205,9 +204,9 @@ function Payment() {
         redirectTarget: "_modal",
       }
       cashfree.checkout(checkoutOptions).then(async (order) => {
-        console.log("payment initialized", order);
-        if (await verifyPayment(order.cf_order_id)) {
-           await updatePaymentStatus(order)
+        console.log("payment initialized", order, orderDetails);
+        if (await verifyPayment(orderDetails.order_id)) {
+           await updatePaymentStatus(orderDetails)
         }
       })
     } catch (error) {
@@ -223,7 +222,7 @@ function Payment() {
       const docRef = doc(db, 'listings', auth.currentUser.uid)
       await updateDoc(docRef, {
         payment: true,
-        paymentResponseId: order.cf_order_id,
+        paymentResponseId: order.order_id,
         orderDetails: order
       })
       // toast.success('Payment successfully!');
