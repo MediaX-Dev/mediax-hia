@@ -196,10 +196,10 @@ function Payment() {
         paymentSessionId: sessionId,
         redirectTarget: "_modal",
       }
-      cashfree.checkout(checkoutOptions).then(async (res) => {
+      cashfree.checkout(checkoutOptions).then(async (order) => {
         console.log("payment initialized")
-        if (await verifyPayment(orderId)) {
-           await updatePaymentStatus(orderId)
+        if (await verifyPayment(order.cf_order_id)) {
+           await updatePaymentStatus(order)
         }
       })
     } catch (error) {
@@ -208,14 +208,15 @@ function Payment() {
     }
   }
 
-  const updatePaymentStatus = async (resId) => {
+  const updatePaymentStatus = async (order) => {
     // toast.success(resId)
     try {
       const auth = getAuth()
       const docRef = doc(db, 'listings', auth.currentUser.uid)
       await updateDoc(docRef, {
         payment: true,
-        paymentResponseId: resId,
+        paymentResponseId: order.cf_order_id,
+        orderDetails: order
       })
       // toast.success('Payment successfully!');
       navigate('/thankyou')
