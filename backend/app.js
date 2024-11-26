@@ -91,8 +91,9 @@ app.post('/verify', async (req, res) => {
 
         Cashfree.PGFetchOrder("2023-08-01", orderId).then((response) => {
             res.json(response);
+            console.log(JSON.stringify(error));
         }).catch(error => {
-            // console.error(JSON.stringify(error));
+            console.error(JSON.stringify(error));
             res.status(400);
             res.json(error);
         });
