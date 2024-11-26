@@ -65,9 +65,8 @@ app.get('/payment', (req, res) => {
         }
 
         Cashfree.PGCreateOrder("2023-08-01", request).then(response => {
-            console.log(JSON.stringify(response));
+            // console.log(JSON.stringify(response));
             res.json(response.data);
-
         }).catch(error => {
             res.status(400);
             res.json({"error": "From Promise catch of /payment"});
