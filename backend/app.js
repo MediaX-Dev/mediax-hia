@@ -91,12 +91,13 @@ app.post('/verify', async (req, res) => {
         console.log('orderId', orderId);
 
         Cashfree.PGFetchOrder("2022-09-01", orderId).then((response) => {
+            console.log('response', response);
             res.json(response);
         })
         .catch((error) => {
             // console.error('Error fetching order', error);
             res.status(400);
-            res.json(error);
+            res.json({"errObj": error, "message": "from .catch of promise"});
         });
         
         // Cashfree.PGFetchOrder("2022-09-01", orderId).then((response) => {
