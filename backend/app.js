@@ -70,11 +70,15 @@ app.get('/payment', (req, res) => {
 
         }).catch(error => {
             console.error(error);
+            res.sendStatus(400);
+            res.json(error);
         })
 
 
     } catch (error) {
         console.log(error);
+        res.sendStatus(400);
+        res.json(error);
     }
 
 
@@ -84,20 +88,19 @@ app.post('/verify', async (req, res) => {
 
     try {
 
-        let {
-            orderId
-        } = req.body;
+        let { orderId } = req.body;
 
         Cashfree.PGOrderFetchPayments("2023-08-01", orderId).then((response) => {
-
             res.json(response);
         }).catch(error => {
             console.error(error);
-        })
-
-
+            res.sendStatus(400);
+            res.json(error);
+        });
     } catch (error) {
         console.log(error);
+        res.sendStatus(400);
+        res.json(error);
     }
 })
 
