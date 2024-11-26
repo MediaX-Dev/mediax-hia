@@ -66,7 +66,7 @@ app.get('/payment', (req, res) => {
 
         Cashfree.PGCreateOrder("2023-08-01", request).then(response => {
             console.log(response.data);
-            res.json(response.data);
+            res.json(response);
 
         }).catch(error => {
             console.error(error.response.data.message);
