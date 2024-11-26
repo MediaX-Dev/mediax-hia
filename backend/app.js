@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 })
 
 
-app.get('/payment', (req, res) => {
+app.get('/payment', async (req, res) => {
 
     try {
 
