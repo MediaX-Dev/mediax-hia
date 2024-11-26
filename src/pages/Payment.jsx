@@ -8,9 +8,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import { load } from '@cashfreepayments/cashfree-js'
 
+let orderDetails = null;
+
 function Payment() {
   // const [responseId, setResponseId] = useState('');
-  const [orderDetails, setOrderDetails] = useState({})
+  // const [orderDetails, setOrderDetails] = useState({})
   const [listingData, setListingData] = useState({})
   const navigate = useNavigate()
   useEffect(() => {
@@ -114,9 +116,7 @@ function Payment() {
   insitialzeSDK()
 
   const [orderId, setOrderId] = useState("")
-
-
-
+  
   const getSessionId = async () => {
     try {
       const auth = getAuth()
@@ -132,7 +132,7 @@ function Payment() {
       if (res.data && res.data.payment_session_id) {
 
         console.log(res.data)
-        setOrderDetails(res.data)
+        orderDetails = res.data;
         return res.data.payment_session_id
       }
     } catch (error) {
