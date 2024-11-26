@@ -69,7 +69,7 @@ app.get('/payment', (req, res) => {
             res.json(response);
 
         }).catch(error => {
-            console.error(error.response.data.message);
+            console.error(error);
         })
 
 
@@ -92,7 +92,7 @@ app.post('/verify', async (req, res) => {
 
             res.json(response);
         }).catch(error => {
-            console.error(error.response.data.message);
+            console.error(error);
         })
 
 
