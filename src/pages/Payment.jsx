@@ -118,6 +118,14 @@ function Payment() {
 
   const getSessionId = async () => {
     try {
+      const auth = getAuth()
+      const docRef = doc(db, 'listings', auth.currentUser.uid)
+      const docSnap = await getDoc(docRef)
+      if (docSnap.exists()) {
+        console.log(docSnap.data())
+        debugger;
+      }
+      
       let res = await axios.get("https://mediax-hia-backend-delta.vercel.app/payment")
 
       if (res.data && res.data.payment_session_id) {
