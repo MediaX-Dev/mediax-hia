@@ -88,6 +88,7 @@ app.post('/verify', async (req, res) => {
     try {
 
         let { orderId } = req.body;
+        console.log('orderId', orderId);
 
         Cashfree.PGFetchOrder("2023-08-01", orderId).then((response) => {
             res.json(response);
@@ -95,12 +96,12 @@ app.post('/verify', async (req, res) => {
         }).catch(error => {
             console.error(JSON.stringify(error));
             res.status(400);
-            res.json(error);
+            res.json({ "error" : "From catch of /verify Promise"});
         });
     } catch (error) {
         // console.log(JSON.stringify(error));
         res.status(400);
-        res.json(error);
+        res.json({ "error" : "From catch of /verify block"});
     }
 })
 
