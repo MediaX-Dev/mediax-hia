@@ -96,6 +96,7 @@ app.post('/verify', async (req, res) => {
         })
         .catch((error) => {
             console.error('Error fetching order', error);
+            res.json(error);
         });
 
         // Cashfree.PGFetchOrder("2023-08-01", orderId).then((response) => {
