@@ -205,7 +205,7 @@ function Payment() {
         redirectTarget: "_modal",
       }
       cashfree.checkout(checkoutOptions).then(async (order) => {
-        console.log("payment initialized")
+        console.log("payment initialized", order);
         if (await verifyPayment(order.cf_order_id)) {
            await updatePaymentStatus(order)
         }
