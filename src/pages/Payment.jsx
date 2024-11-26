@@ -148,10 +148,10 @@ function Payment() {
         console.log(error)
       }
     } */
-  const verifyPayment = async () => {
+  const verifyPayment = async (orderId) => {
     try {
 
-      let res = await axios.post("https://mediax-hia-backend-delta.vercel.app/verify", {
+      const res = await axios.post("https://mediax-hia-backend-delta.vercel.app/verify", {
         orderId: orderId
       })
 
