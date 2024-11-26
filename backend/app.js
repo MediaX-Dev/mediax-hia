@@ -71,7 +71,7 @@ app.get('/payment', (req, res) => {
         }).catch(error => {
             console.error(JSON.stringify(error));
             res.status(400);
-            res.json({error: "From Promise catch of /payment");
+            res.json({"error": "From Promise catch of /payment");
         })
 
 
@@ -79,7 +79,7 @@ app.get('/payment', (req, res) => {
         console.log(JSON.stringify(error));
         res.status(400);
         // res.json(error);
-        res.json({error: "From try catch of /payment");
+        res.json({"error": "From try catch of /payment");
     }
 
 
