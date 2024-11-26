@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 })
 
 
-app.get('/payment', async (req, res) => {
+app.get('/payment', (req, res) => {
 
     try {
 
@@ -64,7 +64,7 @@ app.get('/payment', async (req, res) => {
             },
         }
 
-        await Cashfree.PGCreateOrder("2023-08-01", request).then(response => {
+        Cashfree.PGCreateOrder("2023-08-01", request).then(response => {
             console.log(response.data);
             res.json(response.data);
 
