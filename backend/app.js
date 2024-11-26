@@ -70,14 +70,14 @@ app.get('/payment', (req, res) => {
 
         }).catch(error => {
             console.error(error);
-            res.sendStatus(400);
+            res.status(400);
             res.json(error);
         })
 
 
     } catch (error) {
         console.log(error);
-        res.sendStatus(400);
+        res.status(400);
         res.json(error);
     }
 
@@ -94,12 +94,12 @@ app.post('/verify', async (req, res) => {
             res.json(response);
         }).catch(error => {
             console.error(error);
-            res.sendStatus(400);
+            res.status(400);
             res.json(error);
         });
     } catch (error) {
         console.log(error);
-        res.sendStatus(400);
+        res.status(400);
         res.json(error);
     }
 })
