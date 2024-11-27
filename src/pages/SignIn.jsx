@@ -264,7 +264,7 @@ function SignIn() {
      const verifyOtp = async () => {
        try {
          setOtpLoading(true);
-         setLoading(true);
+       //   setLoading(true);
      
          if (otp.length !== 6) {
            throw new Error('OTP must be 6 digits long');
@@ -308,7 +308,7 @@ function SignIn() {
          toast.error(`Error: ${error.message}`);
        } finally {
          setOtpLoading(false);
-         setLoading(false);
+       //   setLoading(false);
        }
      };
        return (

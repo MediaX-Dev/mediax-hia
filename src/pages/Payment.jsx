@@ -7,7 +7,6 @@ import { db } from "../firebase.config";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import { load } from '@cashfreepayments/cashfree-js'
-import Spinner from "../component/Spinner";
 
 function Payment() {
   // const [responseId, setResponseId] = useState('');
@@ -231,7 +230,7 @@ function Payment() {
 
   return (
     <div>
-      <Spinner clsName={loading ? 'd-flex' : 'd-none'} />
+      {/* <Spinner className={loading ? 'd-flex' : 'd-none'} /> */}
 
       <div className="container-xxl my-5 text-center">
         <h2>Slot Number: {listingData?.slotNumber}</h2>
@@ -239,7 +238,9 @@ function Payment() {
           <img src={listingData?.imageUrl} className="w-100" alt="" />
         </div>
         <button className="th-btn fill mt-5" onClick={handleClick}>
-          Proceed to pay Rs 1,999
+          <div className="d-flex align-items-center justify-content-center gap-2">
+          <span className="m-0">{loading? "Please wait...":"Proceed to pay Rs 1,999"}</span> 
+          </div>
         </button>
       </div>
     </div>

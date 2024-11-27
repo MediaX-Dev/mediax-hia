@@ -86,6 +86,7 @@ function Home() {
     const [policy3, setPolicy3] = useState(false)
     const [policy4, setPolicy4] = useState(false)
     const [policy5, setPolicy5] = useState(false)
+    const [imgStored, setImgStored] = useState(false)
     const auth = getAuth()
     useEffect(() => {
         setUser(auth.currentUser)
@@ -193,10 +194,17 @@ function Home() {
                 // Convert the Blob to a Blob URL and store it in localStorage
                 const blobUrl = URL.createObjectURL(blob);
                 localStorage.setItem('imageBlobUrl', blobUrl);
-
+                if(blobUrl){
+                    setImgStored(true)
+                }
                 // Proceed with any other operations (e.g., navigating to /sign-in page)
                 console.log("Image saved to localStorage");
-                navigate('/sign-in')
+                if(imgStored){
+                    navigate('/sign-in')
+                } else{
+                    toast.error('Please update your image!')
+                    return false
+                }
             }, 'image/jpeg');
         }).catch(function (error) {
             console.log('Error capturing the section:', error);
