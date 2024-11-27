@@ -7,10 +7,13 @@ import { db } from "../firebase.config";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import { load } from '@cashfreepayments/cashfree-js'
+import Spinner from "../component/Spinner";
 
 function Payment() {
   // const [responseId, setResponseId] = useState('');
   const [listingData, setListingData] = useState({})
+  const [loading, setLoading] = useState(false)
+
   const navigate = useNavigate()
   useEffect(() => {
     const fetchCurrentListing = async () => {
@@ -191,6 +194,7 @@ function Payment() {
   } */
   const handleClick = async () => {
     try {
+      setLoading(true)
       let sessionId = await getSessionId()
       let checkoutOptions = {
         paymentSessionId: sessionId,
@@ -199,6 +203,7 @@ function Payment() {
       cashfree.checkout(checkoutOptions).then(async (res) => {
         console.log("payment initialized")
         if (verifyPayment(orderId)) {
+      setLoading(false)
            updatePaymentStatus(orderId)
         }
       })
@@ -226,6 +231,8 @@ function Payment() {
 
   return (
     <div>
+      <Spinner clsName={loading ? 'd-flex' : 'd-none'} />
+
       <div className="container-xxl my-5 text-center">
         <h2>Slot Number: {listingData?.slotNumber}</h2>
         <div className="final-post">
