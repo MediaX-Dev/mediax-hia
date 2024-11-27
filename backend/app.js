@@ -57,7 +57,7 @@ app.get('/payment', (req, res) => {
             "order_currency": "INR",
             "order_id": generateOrderId(),
             "customer_details": {
-                "customer_id": "webcodder01",
+                "customer_id": `${Date.now()}`,
                 "customer_phone": "9999999999",
                 "customer_name": "Web Codder",
                 "customer_email": "webcodder@example.com"
@@ -65,16 +65,19 @@ app.get('/payment', (req, res) => {
         }
 
         Cashfree.PGCreateOrder("2023-08-01", request).then(response => {
-            console.log(response.data);
+            // console.log(JSON.stringify(response));
             res.json(response.data);
-
         }).catch(error => {
-            console.error(error.response.data.message);
+            res.status(400);
+            res.json({"error": "From Promise catch of /payment"});
         })
 
 
     } catch (error) {
-        console.log(error);
+        console.log(JSON.stringify(error));
+        res.status(400);
+        // res.json(error);
+        res.json({"error": "From try catch of /payment"});
     }
 
 
@@ -84,20 +87,29 @@ app.post('/verify', async (req, res) => {
 
     try {
 
-        let {
-            orderId
-        } = req.body;
+        let { orderId } = req.body;
+        console.log('orderId', orderId);
 
-        Cashfree.PGOrderFetchPayments("2023-08-01", orderId).then((response) => {
-
-            res.json(response.data);
-        }).catch(error => {
-            console.error(error.response.data.message);
+        Cashfree.PGFetchOrder("2022-09-01", orderId).then((response) => {
+            console.log('response', response);
+            res.json(response);
         })
-
-
+        .catch((error) => {
+            // console.error('Error fetching order', error);
+            res.status(400);
+            res.json({"errObj": error, "message": "from .catch of promise"});
+        });
+        
+        // Cashfree.PGFetchOrder("2022-09-01", orderId).then((response) => {
+        //     res.json(response);
+        // }).catch(error => {
+        //     res.status(400);
+        //     res.json(error);
+        // });
     } catch (error) {
-        console.log(error);
+        // console.log(JSON.stringify(error));
+        res.status(400);
+        res.json({ "error" : "From catch of /verify block"});
     }
 })
 
