@@ -155,8 +155,9 @@ function Home() {
                 // $('#boobit-up-img').attr('src', e.target.result);
                 // console.log(e.target.result)
                 setError('')
+                console.log(e.target.result)
                 setUploadImgSrc(e.target.result)
-
+                setImgStored(true)
             }
             reader.readAsDataURL(file);
         }
@@ -169,18 +170,19 @@ function Home() {
         //     toast.error('You have to login first to create obituary')
         //     return false
         // }
-        if(!prefix || !nameOfDeceased || !dateOfBirth || !dateOfDeath || !memoService || !serviceTimeStart || !serviceTimeEnd || !dateOfService || !serviceAddress || !griefPersonText1){
+        if (!prefix || !nameOfDeceased || !dateOfBirth || !dateOfDeath || !memoService || !serviceTimeStart || !serviceTimeEnd || !dateOfService || !serviceAddress || !griefPersonText1) {
             toast.error('Please Fill all the fields')
             return false
         }
-        else if(!griefPersonRelation1){
+        else if (!griefPersonRelation1) {
             toast.error('Please Select the relation with person in grief')
             return false
         }
-        else if(!uploadImgSrc){
-            toast.error('Please Upload a image of the person in grief')
-            return false
-        }
+        else
+            if (!imgStored) {
+                toast.error('Please Upload a image of the person in grief')
+                return false
+            }
         const confirm = window.confirm("Please check everything before going forward");
         if (confirm) {
             document.querySelector('.boobit-img-container').style.transform = 'scale(1)';
@@ -194,9 +196,9 @@ function Home() {
     }
     function handleClick() {
         html2canvas(document.querySelector('#boobit-img'),
-        {  scale: 2 }
-        // {  scale: 2, width: 1080, height: 1080 }
-    ).then(function (canvas) {
+            { scale: 2 }
+            // {  scale: 2, width: 1080, height: 1080 }
+        ).then(function (canvas) {
             canvas.toBlob(function (blob) {
                 const file = new File([blob], 'post.jpg', { type: 'image/jpeg' });
                 const dataTransfer = new DataTransfer();
@@ -206,7 +208,7 @@ function Home() {
                 // Convert the Blob to a Blob URL and store it in localStorage
                 const blobUrl = URL.createObjectURL(blob);
                 localStorage.setItem('imageBlobUrl', blobUrl);
-                if(blobUrl){
+                if (blobUrl) {
                     setImgStored(true)
                 }
                 // Proceed with any other operations (e.g., navigating to /sign-in page)
@@ -228,7 +230,7 @@ function Home() {
         const centeredCrop = centerCrop(crop, width, height)
         setCrop(centeredCrop)
     }
-    
+
     const [endTimeOptions, setEndTimeOptions] = useState([
         "5:30 AM", "6:00 AM", "6:30 AM", "7:00 AM", "7:30 AM", "8:00 AM",
         "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM",
@@ -251,6 +253,53 @@ function Home() {
         setServiceTimeEnd(prevEndTime => filteredOptions.includes(prevEndTime) ? prevEndTime : "00");
         return filteredOptions;
     };
+
+    /*  const handleDateOfBirthChange = (date) => {
+         if (dateOfDeath && date > dateOfDeath) {
+             alert("Date of birth cannot be later than the date of death.");
+             return;
+         }
+         setDateOfBirth(date);
+     };
+ 
+     const handleDateOfDeathChange = (date) => {
+         if (dateOfBirth && date < dateOfBirth) {
+             alert("Date of death cannot be earlier than the date of birth.");
+             return;
+         }
+         setDateOfDeath(date);
+     }; */
+    const handleDateOfBirthChange = (date) => {
+        if (!(date instanceof Date) || isNaN(date)) {
+            console.error("Invalid date selected for Date of Birth.");
+            return;
+        }
+        if (dateOfDeath && date > dateOfDeath) {
+            alert("Date of birth cannot be later than the date of death.");
+            return;
+        }
+        setDateOfBirth(date);
+    };
+
+    const handleDateOfDeathChange = (date) => {
+        if (!(date instanceof Date) || isNaN(date)) {
+            console.error("Invalid date selected for Date of Death.");
+            return;
+        }
+        if (dateOfBirth && date < dateOfBirth) {
+            alert("Date of death cannot be earlier than the date of birth.");
+            return;
+        }
+        setDateOfDeath(date);
+    };
+    const handleDateOfServiceChange = (date) => {
+        if (date instanceof Date && !isNaN(date)) {
+            setDateOfService(date);
+        } else {
+            console.error("Invalid date selected for Date of Service.");
+        }
+    };
+
 
     // Effect to update end time options whenever start time changes
     useEffect(() => {
@@ -410,33 +459,37 @@ function Home() {
                                                 </div>
                                                 <div className="mb-3">
                                                     <DatePickerWidgets
+                                                        value={dateOfBirth || null}
+                                                        onChange={handleDateOfBirthChange}
+                                                        editFormat="DD MMM, YYYY"
+                                                        parse={(str) => {
+                                                            const date = new Date(str);
+                                                            return isNaN(date) ? null : date;
+                                                        }}
+                                                        placeholder="Date of birth"
+                                                        max={new Date()}
+                                                    />
+                                                    {/* <DatePickerWidgets
                                                         value={dateOfBirth}
                                                         onChange={setDateOfBirth}
                                                         editFormat="DD MMM, YYYY" // User can input the date in this format
                                                         parse={str => new Date(str)} // Parse the input into a Date object
                                                         placeholder="Date of birth"
-                                                    />
-                                                    {/* <DatePickerWidgets
-                                                        // className='date form-control'
-                                                        selected={dateOfBirth}
-                                                        onChange={(date) => setDateOfBirth(date)}
-                                                        // valueFormat={{ day: "numeric", month: "short", year: "numeric" }}
-                                                        // dateFormat="dd MMM yyyy"  // This ensures the format is Day Month Year
-                                                        placeholder='Date of birth' /> */}
+                                                        max={new Date()}
+                                                    /> */}
                                                 </div>
                                                 <div className="mb-3">
                                                     <DatePickerWidgets
-                                                        value={dateOfDeath}
-                                                        onChange={setDateOfDeath}
-                                                        editFormat="DD MMM, YYYY" // User can input the date in this format
-                                                        parse={str => new Date(str)} // Parse the input into a Date object
+                                                        value={dateOfDeath || null}
+                                                        onChange={handleDateOfDeathChange}
+                                                        editFormat="DD MMM, YYYY"
+                                                        parse={(str) => {
+                                                            const date = new Date(str);
+                                                            return isNaN(date) ? null : date;
+                                                        }}
                                                         placeholder="Date of death"
+                                                        min={dateOfBirth || undefined}
                                                     />
-                                                    {/* <DatePickerWidgets
-                                                        selected={dateOfDeath}
-                                                        onChange={(date) => setDateOfDeath(date)}
-                                                        // valueFormat={{ day: "numeric", month: "short", year: "numeric" }}
-                                                        placeholder='Date of death' /> */}
                                                 </div>
                                                 <div class="mb-3">
                                                     <select class="form-select" id="service-select" value={memoService} onChange={(memo) => setMemoService(memo.target.value)}>
@@ -550,18 +603,16 @@ function Home() {
                                                 </div>
                                                 <div className="mb-3">
                                                     <DatePickerWidgets
-                                                        value={dateOfService}
-                                                        onChange={setDateOfService}
-                                                        editFormat="DD MMM, YYYY" // User can input the date in this format
-                                                        parse={str => new Date(str)} // Parse the input into a Date object
+                                                        value={dateOfService || null} // Default to null if invalid
+                                                        onChange={handleDateOfServiceChange}
+                                                        editFormat="DD MMM, YYYY"
+                                                        parse={(str) => {
+                                                            const parsedDate = new Date(str);
+                                                            return isNaN(parsedDate) ? null : parsedDate;
+                                                        }}
                                                         placeholder="Date of service"
+                                                        min={new Date()} // Ensure this is a valid date
                                                     />
-                                                    {/* <DatePickerWidgets
-                                                        selected={dateOfService}
-                                                        min={new Date()}
-                                                        onChange={(date) => setDateOfService(date)}
-                                                        // valueFormat={{ day: "numeric", month: "short", year: "numeric" }}
-                                                        placeholder='Date of service' /> */}
                                                 </div>
                                                 <div class="mb-3">
                                                     <input type="text" class="form-control" id="address" placeholder="Address of memorial service" value={serviceAddress}
