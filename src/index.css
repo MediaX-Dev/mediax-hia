@@ -1442,3 +1442,9 @@ form .mb-3 {
     background-color: transparent;
     color: var(--white);
 }
+
+.th-btn.danger{
+    background-color: #FFE4E4;
+    color: #A6373E;
+    border: none;
+}

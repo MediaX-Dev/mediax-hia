@@ -24,7 +24,7 @@ import {
     FaCalendarWeek,
     FaCalendarDay,
     FaCalendarCheck,
-    FaClock
+    FaClock,
 } from 'react-icons/fa';
 import { format } from 'date-fns'
 import html2canvas from 'html2canvas';
@@ -169,6 +169,18 @@ function Home() {
         //     toast.error('You have to login first to create obituary')
         //     return false
         // }
+        if(!prefix || !nameOfDeceased || !dateOfBirth || !dateOfDeath || !memoService || !serviceTimeStart || !serviceTimeEnd || !dateOfService || !serviceAddress || !griefPersonText1){
+            toast.error('Please Fill all the fields')
+            return false
+        }
+        else if(!griefPersonRelation1){
+            toast.error('Please Select the relation with person in grief')
+            return false
+        }
+        else if(!uploadImgSrc){
+            toast.error('Please Upload a image of the person in grief')
+            return false
+        }
         const confirm = window.confirm("Please check everything before going forward");
         if (confirm) {
             document.querySelector('.boobit-img-container').style.transform = 'scale(1)';
@@ -199,12 +211,6 @@ function Home() {
                 }
                 // Proceed with any other operations (e.g., navigating to /sign-in page)
                 console.log("Image saved to localStorage");
-                if(imgStored){
-                    navigate('/sign-in')
-                } else{
-                    toast.error('Please update your image!')
-                    return false
-                }
             }, 'image/jpeg');
         }).catch(function (error) {
             console.log('Error capturing the section:', error);

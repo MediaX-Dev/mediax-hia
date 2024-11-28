@@ -7,6 +7,9 @@ import { db } from "../firebase.config";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import { load } from '@cashfreepayments/cashfree-js'
+import {
+  FaTimesCircle
+} from 'react-icons/fa';
 
 let orderDetails = null;
 
@@ -15,6 +18,7 @@ function Payment() {
   // const [orderDetails, setOrderDetails] = useState({})
   const [listingData, setListingData] = useState({})
   const [loading, setLoading] = useState(false)
+  const [payFailed, setPayFailed] = useState(true)
 
   const navigate = useNavigate()
   useEffect(() => {
@@ -118,7 +122,7 @@ function Payment() {
   insitialzeSDK()
 
   const [orderId, setOrderId] = useState("")
-  
+
   const getSessionId = async () => {
     try {
       const auth = getAuth()
@@ -128,7 +132,7 @@ function Payment() {
         console.log(docSnap.data())
         debugger;
       }
-      
+
       let res = await axios.get("https://mediax-hia-backend-delta.vercel.app/payment")
 
       if (res.data && res.data.payment_session_id) {
@@ -206,18 +210,10 @@ function Payment() {
         paymentSessionId: sessionId,
         redirectTarget: "_modal",
       }
-<<<<<<< HEAD
-      cashfree.checkout(checkoutOptions).then(async (res) => {
-        console.log("payment initialized")
-        if (verifyPayment(orderId)) {
-      setLoading(false)
-           updatePaymentStatus(orderId)
-=======
       cashfree.checkout(checkoutOptions).then(async (order) => {
         console.log("payment initialized", order, orderDetails);
         if (await verifyPayment(orderDetails.order_id)) {
-           await updatePaymentStatus(orderDetails)
->>>>>>> 3470b88e3eb04cfd7e59f6f799f06f29e8a5a1e1
+          await updatePaymentStatus(orderDetails)
         }
       })
     } catch (error) {
@@ -252,11 +248,25 @@ function Payment() {
         <div className="final-post">
           <img src={listingData?.imageUrl} className="w-100" alt="" />
         </div>
-        <button className="th-btn fill mt-5" onClick={handleClick}>
-          <div className="d-flex align-items-center justify-content-center gap-2">
-          <span className="m-0">{loading? "Please wait...":"Proceed to pay Rs 1,999"}</span> 
+        {payFailed ? (
+          <div className="d-flex flex-column mt-3 mt-md-5 gap-3">
+            <div className="th-btn danger">
+              <FaTimesCircle /> Payment Failed
+            </div>
+            <button className="th-btn fill" onClick={handleClick}>
+              <div className="d-flex align-items-center justify-content-center gap-2">
+                <span className="m-0">{loading ? "Please wait..." : "Try Again"}</span>
+              </div>
+            </button>
+
           </div>
-        </button>
+        ) : (
+          <button className="th-btn fill" onClick={handleClick}>
+            <div className="d-flex align-items-center justify-content-center gap-2">
+              <span className="m-0">{loading ? "Please wait..." : "Proceed to pay Rs 1,999"}</span>
+            </div>
+          </button>
+        )}
       </div>
     </div>
   );
