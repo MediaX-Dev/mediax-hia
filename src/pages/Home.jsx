@@ -170,7 +170,7 @@ function Home() {
         //     toast.error('You have to login first to create obituary')
         //     return false
         // }
-        if (!prefix || !nameOfDeceased || !dateOfBirth || !dateOfDeath || !memoService || !serviceTimeStart || !serviceTimeEnd || !dateOfService || !serviceAddress || !griefPersonText1) {
+        /* if (!prefix || !nameOfDeceased || !dateOfBirth || !dateOfDeath || !memoService || !serviceTimeStart || !serviceTimeEnd || !dateOfService || !serviceAddress || !griefPersonText1) {
             toast.error('Please Fill all the fields')
             return false
         }
@@ -178,11 +178,69 @@ function Home() {
             toast.error('Please Select the relation with person in grief')
             return false
         }
-        else
-            if (!imgStored) {
-                toast.error('Please Upload a image of the person in grief')
+        else if(griefPerson1) {
+            if(!griefPersonText2){
+            toast.error('Please Fill all the fields')
+            return false
+            }
+            else if(!griefPersonRelation2){
+                toast.error('Please Select the relation with person in grief')
                 return false
             }
+        }
+        else if(griefPerson2) {
+            if(!griefPersonText3){
+            toast.error('Please Fill all the fields')
+            return false
+            }
+            else if(!griefPersonRelation3){
+                toast.error('Please Select the relation with person in grief')
+                return false
+            }
+        }
+        else if(griefPerson3) {
+            if(!griefPersonText4){
+            toast.error('Please Fill all the fields')
+            return false
+            }
+            else if(!griefPersonRelation4){
+                toast.error('Please Select the relation with person in grief')
+                return false
+            }
+        }
+        else if (!imgStored) {
+                toast.error('Please Upload a image of the person in grief')
+                return false
+            } */
+                if (!prefix || !nameOfDeceased || !dateOfBirth || !dateOfDeath || !memoService || !serviceTimeStart || !serviceTimeEnd || !dateOfService || !serviceAddress || !griefPersonText1) {
+                    toast.error('Please Fill all the fields');
+                    return false;
+                } else if (!griefPersonRelation1) {
+                    toast.error('Please Select the relation with person in grief');
+                    return false;
+                } else if (griefPerson1 && !griefPersonText2) {
+                    toast.error('Please Fill all the fields');
+                    return false;
+                } else if (griefPerson1 && !griefPersonRelation2) {
+                    toast.error('Please Select the relation with person in grief');
+                    return false;
+                } else if (griefPerson2 && !griefPersonText3) {
+                    toast.error('Please Fill all the fields');
+                    return false;
+                } else if (griefPerson2 && !griefPersonRelation3) {
+                    toast.error('Please Select the relation with person in grief');
+                    return false;
+                } else if (griefPerson3 && !griefPersonText4) {
+                    toast.error('Please Fill all the fields');
+                    return false;
+                } else if (griefPerson3 && !griefPersonRelation4) {
+                    toast.error('Please Select the relation with person in grief');
+                    return false;
+                } else if (!imgStored) {
+                    toast.error('Please Upload an image of the person in grief');
+                    return false;
+                }
+                
         const confirm = window.confirm("Please check everything before going forward");
         if (confirm) {
             document.querySelector('.boobit-img-container').style.transform = 'scale(1)';
