@@ -266,11 +266,7 @@ function Home() {
                 // Convert the Blob to a Blob URL and store it in localStorage
                 const blobUrl = URL.createObjectURL(blob);
                 localStorage.setItem('imageBlobUrl', blobUrl);
-                if (blobUrl) {
-                    setImgStored(true)
-                }
-                // Proceed with any other operations (e.g., navigating to /sign-in page)
-                console.log("Image saved to localStorage");
+                navigate('/sign-in')
             }, 'image/jpeg');
         }).catch(function (error) {
             console.log('Error capturing the section:', error);
