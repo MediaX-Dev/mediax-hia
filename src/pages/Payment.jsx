@@ -18,7 +18,7 @@ function Payment() {
   // const [orderDetails, setOrderDetails] = useState({})
   const [listingData, setListingData] = useState({})
   const [loading, setLoading] = useState(false)
-  const [payFailed, setPayFailed] = useState(true)
+  const [payFailed, setPayFailed] = useState(false)
 
   const navigate = useNavigate()
   useEffect(() => {
@@ -212,8 +212,10 @@ function Payment() {
       }
       cashfree.checkout(checkoutOptions).then(async (order) => {
         console.log("payment initialized", order, orderDetails);
-        if (verifyPayment(orderDetails.order_id)) {
-          updatePaymentStatus(orderDetails)
+        const verified = await verifyPayment(orderDetails.order_id);
+        console.log("Is Payment Verified:", verified);
+        if (verified) {
+          updatePaymentStatus(orderDetails);
         }
       })
     } catch (error) {
