@@ -212,11 +212,8 @@ function Payment() {
       }
       cashfree.checkout(checkoutOptions).then(async (order) => {
         console.log("payment initialized", order, orderDetails);
-        const verified = await verifyPayment(orderDetails.order_id);
-        console.log("Is Payment Verified:", verified);
-        if (verified) {
-          updatePaymentStatus(orderDetails);
-        }
+        await verifyPayment(orderDetails.order_id);
+        updatePaymentStatus(orderDetails);
       })
     } catch (error) {
       console.log(error);
@@ -263,7 +260,7 @@ function Payment() {
 
           </div>
         ) : (
-          <button className="th-btn fill" onClick={handleClick}>
+          <button className="th-btn fill mt-4" onClick={handleClick}>
             <div className="d-flex align-items-center justify-content-center gap-2">
               <span className="m-0">{loading ? "Please wait..." : "Proceed to pay Rs 1,999"}</span>
             </div>
