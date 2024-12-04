@@ -51,16 +51,16 @@ app.get('/', (req, res) => {
 app.get('/payment', (req, res) => {
 
     try {
-        const { listingData } = req.body;
+
         let request = {
             "order_amount": 1,
             "order_currency": "INR",
             "order_id": generateOrderId(),
             "customer_details": {
                 "customer_id": `${Date.now()}`,
-                "customer_phone": listingData?.number || '9999999999',
-                "customer_name": listingData?.name || 'User Name',
-                "customer_email": listingData?.gmail || "user@gmail.com"
+                "customer_phone": "9999999999",
+                "customer_name": "Web Codder",
+                "customer_email": "webcodder@example.com"
             },
         }
 
