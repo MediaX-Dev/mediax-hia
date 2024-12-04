@@ -46,6 +46,7 @@ function Home() {
     const [prefix, setPrefix] = useState(null)
     const [nameOfDeceased, setNameOfDeceased] = useState(null)
     const [memoService, setMemoService] = useState(null)
+    const [memoService1, setMemoService1] = useState(null)
     const [serviceTimeStart, setServiceTimeStart] = useState('00')
     const [serviceTimeEnd, setServiceTimeEnd] = useState('00')
     const [serviceAddress, setServiceAddress] = useState(null)
@@ -155,7 +156,7 @@ function Home() {
                 // $('#boobit-up-img').attr('src', e.target.result);
                 // console.log(e.target.result)
                 setError('')
-                console.log(e.target.result)
+                // console.log(e.target.result)
                 setUploadImgSrc(e.target.result)
                 setImgStored(true)
             }
@@ -165,82 +166,35 @@ function Home() {
 
     function confirmDetails() {
         setConfirmToggle(true)
-        // const auth = getAuth()
-        // if (!auth.currentUser) {
-        //     toast.error('You have to login first to create obituary')
-        //     return false
-        // }
-        /* if (!prefix || !nameOfDeceased || !dateOfBirth || !dateOfDeath || !memoService || !serviceTimeStart || !serviceTimeEnd || !dateOfService || !serviceAddress || !griefPersonText1) {
-            toast.error('Please Fill all the fields')
-            return false
+        if (!prefix || !nameOfDeceased || !dateOfBirth || !dateOfDeath || !serviceTimeStart || !serviceTimeEnd || !dateOfService || !serviceAddress || !griefPersonText1 || (memoService === "Write Your Own" ? !memoService1 : !memoService)) {
+            toast.error('Please Fill all the fields');
+            return false;
+        } else if (!griefPersonRelation1) {
+            toast.error('Please Select the relation with person in grief');
+            return false;
+        } else if (griefPerson1 && !griefPersonText2) {
+            toast.error('Please Fill all the fields');
+            return false;
+        } else if (griefPerson1 && !griefPersonRelation2) {
+            toast.error('Please Select the relation with person in grief');
+            return false;
+        } else if (griefPerson2 && !griefPersonText3) {
+            toast.error('Please Fill all the fields');
+            return false;
+        } else if (griefPerson2 && !griefPersonRelation3) {
+            toast.error('Please Select the relation with person in grief');
+            return false;
+        } else if (griefPerson3 && !griefPersonText4) {
+            toast.error('Please Fill all the fields');
+            return false;
+        } else if (griefPerson3 && !griefPersonRelation4) {
+            toast.error('Please Select the relation with person in grief');
+            return false;
+        } else if (!imgStored) {
+            toast.error('Please Upload an image of the person in grief');
+            return false;
         }
-        else if (!griefPersonRelation1) {
-            toast.error('Please Select the relation with person in grief')
-            return false
-        }
-        else if(griefPerson1) {
-            if(!griefPersonText2){
-            toast.error('Please Fill all the fields')
-            return false
-            }
-            else if(!griefPersonRelation2){
-                toast.error('Please Select the relation with person in grief')
-                return false
-            }
-        }
-        else if(griefPerson2) {
-            if(!griefPersonText3){
-            toast.error('Please Fill all the fields')
-            return false
-            }
-            else if(!griefPersonRelation3){
-                toast.error('Please Select the relation with person in grief')
-                return false
-            }
-        }
-        else if(griefPerson3) {
-            if(!griefPersonText4){
-            toast.error('Please Fill all the fields')
-            return false
-            }
-            else if(!griefPersonRelation4){
-                toast.error('Please Select the relation with person in grief')
-                return false
-            }
-        }
-        else if (!imgStored) {
-                toast.error('Please Upload a image of the person in grief')
-                return false
-            } */
-                if (!prefix || !nameOfDeceased || !dateOfBirth || !dateOfDeath || !memoService || !serviceTimeStart || !serviceTimeEnd || !dateOfService || !serviceAddress || !griefPersonText1) {
-                    toast.error('Please Fill all the fields');
-                    return false;
-                } else if (!griefPersonRelation1) {
-                    toast.error('Please Select the relation with person in grief');
-                    return false;
-                } else if (griefPerson1 && !griefPersonText2) {
-                    toast.error('Please Fill all the fields');
-                    return false;
-                } else if (griefPerson1 && !griefPersonRelation2) {
-                    toast.error('Please Select the relation with person in grief');
-                    return false;
-                } else if (griefPerson2 && !griefPersonText3) {
-                    toast.error('Please Fill all the fields');
-                    return false;
-                } else if (griefPerson2 && !griefPersonRelation3) {
-                    toast.error('Please Select the relation with person in grief');
-                    return false;
-                } else if (griefPerson3 && !griefPersonText4) {
-                    toast.error('Please Fill all the fields');
-                    return false;
-                } else if (griefPerson3 && !griefPersonRelation4) {
-                    toast.error('Please Select the relation with person in grief');
-                    return false;
-                } else if (!imgStored) {
-                    toast.error('Please Upload an image of the person in grief');
-                    return false;
-                }
-                
+
         const confirm = window.confirm("Please check everything before going forward");
         if (confirm) {
             document.querySelector('.boobit-img-container').style.transform = 'scale(1)';
@@ -458,7 +412,13 @@ function Home() {
                                                                 {dateOfDeath ? format(dateOfDeath, 'do MMMM, yyyy') : '19th April, 1945'}
                                                             </div>
                                                         </div>
-                                                        <div class="boobit-service">{memoService ? memoService : 'Memorial Service'}</div>
+                                                        <div class="boobit-service">
+                                                            {memoService
+                                                                ? (memoService === "Write Your Own" ? "" : memoService)
+                                                                : "Memorial Service"}
+                                                            {memoService1 || ""}
+
+                                                        </div>
                                                         <div class="boobit-details">
                                                             <div class="boobit-time">
                                                                 {serviceTimeStart ? serviceTimeStart : '10:00am'}
@@ -498,7 +458,7 @@ function Home() {
                                             <form action="" method="post">
                                                 <div class="mb-3">
                                                     <select class="form-select" name="prefix" id="prefix-select" value={prefix} onChange={(pfix) => setPrefix(pfix.target.value)}>
-                                                        <option selected>Select prefix</option>
+                                                        <option selected disabled>Select Prefix</option>
                                                         <option value="Mr.">Mr.</option>
                                                         <option value="Mrs.">Mrs.</option>
                                                         <option value="Miss">Miss</option>
@@ -509,7 +469,7 @@ function Home() {
                                                 </div>
                                                 <div class="mb-3">
                                                     <input type="text" class="form-control text-capitalize" maxLength='21' id="name-of-deceased" value={nameOfDeceased}
-                                                        placeholder="Name of deceased" onChange={(prev) => setNameOfDeceased(prev.target.value)} />
+                                                        placeholder="Name of Deceased" onChange={(prev) => setNameOfDeceased(prev.target.value)} />
                                                 </div>
                                                 <div className="mb-3">
                                                     <DatePickerWidgets
@@ -520,7 +480,7 @@ function Home() {
                                                             const date = new Date(str);
                                                             return isNaN(date) ? null : date;
                                                         }}
-                                                        placeholder="Date of birth"
+                                                        placeholder="Date of Birth"
                                                         max={new Date()}
                                                     />
                                                     {/* <DatePickerWidgets
@@ -541,108 +501,28 @@ function Home() {
                                                             const date = new Date(str);
                                                             return isNaN(date) ? null : date;
                                                         }}
-                                                        placeholder="Date of death"
+                                                        placeholder="Date of Death"
                                                         min={dateOfBirth || undefined}
                                                         max={new Date()}
                                                     />
                                                 </div>
                                                 <div class="mb-3">
-                                                    <select class="form-select" id="service-select" value={memoService} onChange={(memo) => setMemoService(memo.target.value)}>
-                                                        <option selected>Service</option>
-                                                        <option value="Memorial">Memorial</option>
-                                                        <option value="Death Anniversary">Death Anniversary</option>
-                                                        <option value="Funeral Announcement">Funeral Announcement</option>
-                                                        <option value="Condolence Message">Condolence Message</option>
-                                                        <option value="Tribute">Tribute</option>
+                                                    <select class={`form-select ${memoService === "Write Your Own" ? 'd-none' : ''}`} id="service-select" value={memoService} onChange={(memo) => setMemoService(memo.target.value)}>
+                                                        <option selected disabled>Service</option>
+                                                        <option value="Shav Yatra">Shav Yatra</option>
+                                                        <option value="Uthawani">Uthawani</option>
+                                                        <option value="Tehravi">Tehravi</option>
+                                                        <option value="Chautha">Chautha</option>
+                                                        <option value="Write Your Own">Write Your Own</option>
                                                     </select>
+                                                    <div class={`my-3 ${memoService === "Write Your Own" ? 'd-block' : 'd-none'}`}>
+                                                        <input type="text" class="form-control" placeholder="Write Your Own" value={memoService1} onChange={(memo) => setMemoService1(memo.target.value)}
+                                                            maxLength="30" />
+                                                    </div>
                                                 </div>
-                                                {/* <div class="mb-3">
-                                                    <select class="form-select" id="service-time-select" value={serviceTimeStart} onChange={handleStartTimeChange}>
-                                                        <option selected value="00">Time of service (start)</option>
-                                                        <option value="5:30 AM">5:30 AM</option>
-                                                        <option value="6:00 AM">6:00 AM</option>
-                                                        <option value="6:30 AM">6:30 AM</option>
-                                                        <option value="7:00 AM">7:00 AM</option>
-                                                        <option value="7:30 AM">7:30 AM</option>
-                                                        <option value="8:00 AM">8:00 AM</option>
-                                                        <option value="8:30 AM">8:30 AM</option>
-                                                        <option value="9:00 AM">9:00 AM</option>
-                                                        <option value="9:30 AM">9:30 AM</option>
-                                                        <option value="10:00 AM">10:00 AM</option>
-                                                        <option value="10:30 AM">10:30 AM</option>
-                                                        <option value="11:00 AM">11:00 AM</option>
-                                                        <option value="11:30 AM">11:30 AM</option>
-                                                        <option value="12:00 PM">12:00 PM</option>
-                                                        <option value="12:30 PM">12:30 PM</option>
-                                                        <option value="1:00 PM">1:00 PM</option>
-                                                        <option value="1:30 PM">1:30 PM</option>
-                                                        <option value="2:00 PM">2:00 PM</option>
-                                                        <option value="2:30 PM">2:30 PM</option>
-                                                        <option value="3:00 PM">3:00 PM</option>
-                                                        <option value="3:30 PM">3:30 PM</option>
-                                                        <option value="4:00 PM">4:00 PM</option>
-                                                        <option value="4:30 PM">4:30 PM</option>
-                                                        <option value="5:00 PM">5:00 PM</option>
-                                                        <option value="5:30 PM">5:30 PM</option>
-                                                        <option value="6:00 PM">6:00 PM</option>
-                                                        <option value="6:30 PM">6:30 PM</option>
-                                                        <option value="7:00 PM">7:00 PM</option>
-                                                        <option value="7:30 PM">7:30 PM</option>
-                                                        <option value="8:00 PM">8:00 PM</option>
-                                                        <option value="8:30 PM">8:30 PM</option>
-                                                        <option value="9:00 PM">9:00 PM</option>
-                                                        <option value="9:30 PM">9:30 PM</option>
-                                                        <option value="10:00 PM">10:00 PM</option>
-                                                        <option value="10:30 PM">10:30 PM</option>
-                                                        <option value="11:00 PM">11:00 PM</option>
-                                                        <option value="11:30 PM">11:30 PM</option>
-                                                    </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <select class="form-select" id="service-time-select" value={serviceTimeEnd} onChange={handleEndTimeChange}>
-                                                        <option selected value="00">Time of service (End)</option>
-                                                        <option value="5:30 AM">5:30 AM</option>
-                                                        <option value="6:00 AM">6:00 AM</option>
-                                                        <option value="6:30 AM">6:30 AM</option>
-                                                        <option value="7:00 AM">7:00 AM</option>
-                                                        <option value="7:30 AM">7:30 AM</option>
-                                                        <option value="8:00 AM">8:00 AM</option>
-                                                        <option value="8:30 AM">8:30 AM</option>
-                                                        <option value="9:00 AM">9:00 AM</option>
-                                                        <option value="9:30 AM">9:30 AM</option>
-                                                        <option value="10:00 AM">10:00 AM</option>
-                                                        <option value="10:30 AM">10:30 AM</option>
-                                                        <option value="11:00 AM">11:00 AM</option>
-                                                        <option value="11:30 AM">11:30 AM</option>
-                                                        <option value="12:00 PM">12:00 PM</option>
-                                                        <option value="12:30 PM">12:30 PM</option>
-                                                        <option value="1:00 PM">1:00 PM</option>
-                                                        <option value="1:30 PM">1:30 PM</option>
-                                                        <option value="2:00 PM">2:00 PM</option>
-                                                        <option value="2:30 PM">2:30 PM</option>
-                                                        <option value="3:00 PM">3:00 PM</option>
-                                                        <option value="3:30 PM">3:30 PM</option>
-                                                        <option value="4:00 PM">4:00 PM</option>
-                                                        <option value="4:30 PM">4:30 PM</option>
-                                                        <option value="5:00 PM">5:00 PM</option>
-                                                        <option value="5:30 PM">5:30 PM</option>
-                                                        <option value="6:00 PM">6:00 PM</option>
-                                                        <option value="6:30 PM">6:30 PM</option>
-                                                        <option value="7:00 PM">7:00 PM</option>
-                                                        <option value="7:30 PM">7:30 PM</option>
-                                                        <option value="8:00 PM">8:00 PM</option>
-                                                        <option value="8:30 PM">8:30 PM</option>
-                                                        <option value="9:00 PM">9:00 PM</option>
-                                                        <option value="9:30 PM">9:30 PM</option>
-                                                        <option value="10:00 PM">10:00 PM</option>
-                                                        <option value="10:30 PM">10:30 PM</option>
-                                                        <option value="11:00 PM">11:00 PM</option>
-                                                        <option value="11:30 PM">11:30 PM</option>
-                                                    </select>
-                                                </div> */}
                                                 <div className="mb-3">
                                                     <select className="form-select" value={serviceTimeStart} onChange={(e) => setServiceTimeStart(e.target.value)}>
-                                                        <option value="00">Time of service (start)</option>
+                                                        <option value="00" disabled>Time of Service (Start)</option>
                                                         {endTimeOptions.map(time => (
                                                             <option key={time} value={time}>{time}</option>
                                                         ))}
@@ -650,7 +530,7 @@ function Home() {
                                                 </div>
                                                 <div className="mb-3">
                                                     <select className="form-select" value={serviceTimeEnd} onChange={(e) => setServiceTimeEnd(e.target.value)}>
-                                                        <option value="00">Time of service (end)</option>
+                                                        <option value="00" disabled>Time of Service (End)</option>
                                                         {endTimeOptions.map(time => (
                                                             <option key={time} value={time}>{time}</option>
                                                         ))}
@@ -665,18 +545,18 @@ function Home() {
                                                             const parsedDate = new Date(str);
                                                             return isNaN(parsedDate) ? null : parsedDate;
                                                         }}
-                                                        placeholder="Date of service"
+                                                        placeholder="Date of Service"
                                                         min={new Date()} // Ensure this is a valid date
                                                     />
                                                 </div>
                                                 <div class="mb-3">
-                                                    <input type="text" class="form-control" id="address" placeholder="Address of memorial service" value={serviceAddress}
+                                                    <input type="text" class="form-control" id="address" placeholder="Address of Memorial Service" value={serviceAddress}
                                                         maxLength="24" onChange={(addr) => setServiceAddress(addr.target.value)} />
                                                 </div>
                                                 <div class="">
                                                     <div class="greif">
                                                         <div class="d-flex gap-3 mb-3">
-                                                            <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText1} onChange={(prev) => setGriefPersonText1(prev.target.value)} placeholder="Person in greif" />
+                                                            <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText1} onChange={(prev) => setGriefPersonText1(prev.target.value)} placeholder="Person in Greif" />
                                                             <select class="form-select" name="prefix" id="prefix-select" value={griefPersonRelation1} onChange={(rel) => setGriefPersonRelation1(rel.target.value)}>
                                                                 <option value="Relation" selected>Relation</option>
                                                                 <option value="Father">Father</option>
@@ -698,7 +578,7 @@ function Home() {
                                                         </div>
                                                         {griefPerson1 && (
                                                             <div class="d-flex gap-3 mb-3">
-                                                                <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText2} onChange={(prev) => setGriefPersonText2(prev.target.value)} placeholder="Person in greif" />
+                                                                <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText2} onChange={(prev) => setGriefPersonText2(prev.target.value)} placeholder="Person in Greif" />
                                                                 <select class="form-select" name="prefix" id="prefix-select" value={griefPersonRelation2} onChange={(rel) => setGriefPersonRelation2(rel.target.value)}>
                                                                     <option value="Relation" selected>Relation</option>
                                                                     <option value="Father">Father</option>
@@ -720,7 +600,7 @@ function Home() {
                                                             </div>)}
                                                         {griefPerson2 && (
                                                             <div class="d-flex gap-3 mb-3">
-                                                                <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText3} onChange={(prev) => setGriefPersonText3(prev.target.value)} placeholder="Person in greif" />
+                                                                <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText3} onChange={(prev) => setGriefPersonText3(prev.target.value)} placeholder="Person in Greif" />
                                                                 <select class="form-select" name="prefix" id="prefix-select" value={griefPersonRelation3} onChange={(rel) => setGriefPersonRelation3(rel.target.value)}>
                                                                     <option value="Relation" selected>Relation</option>
                                                                     <option value="Father">Father</option>
@@ -742,7 +622,7 @@ function Home() {
                                                             </div>)}
                                                         {griefPerson3 && (
                                                             <div class="d-flex gap-3 mb-3">
-                                                                <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText4} onChange={(prev) => setGriefPersonText4(prev.target.value)} placeholder="Person in greif" />
+                                                                <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText4} onChange={(prev) => setGriefPersonText4(prev.target.value)} placeholder="Person in Greif" />
                                                                 <select class="form-select" name="prefix" id="prefix-select" value={griefPersonRelation4} onChange={(rel) => setGriefPersonRelation4(rel.target.value)}>
                                                                     <option value="Relation" selected>Relation</option>
                                                                     <option value="Father">Father</option>
