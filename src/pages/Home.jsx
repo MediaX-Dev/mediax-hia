@@ -543,6 +543,7 @@ function Home() {
                                                         }}
                                                         placeholder="Date of death"
                                                         min={dateOfBirth || undefined}
+                                                        max={new Date()}
                                                     />
                                                 </div>
                                                 <div class="mb-3">
