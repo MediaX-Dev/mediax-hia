@@ -133,7 +133,9 @@ function Payment() {
         debugger;
       }
 
-      let res = await axios.get("https://mediax-hia-backend-delta.vercel.app/payment")
+      let res = await axios.get("https://mediax-hia-backend-delta.vercel.app/payment", {
+        listingData,
+      })
 
       if (res.data && res.data.payment_session_id) {
 
