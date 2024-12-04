@@ -218,6 +218,7 @@ function Payment() {
           setPayFailed(true)
         } else{
           setPayFailed(false)
+          setLoading(false)
           updatePaymentStatus(orderDetails);
         }
       })
