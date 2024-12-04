@@ -137,7 +137,7 @@ function Payment() {
 
       if (res.data && res.data.payment_session_id) {
 
-        console.log(res.data)
+        console.log('This is response from get session id', res.data)
         orderDetails = res.data;
         return res.data.payment_session_id
       }
@@ -169,7 +169,7 @@ function Payment() {
       })
 
       if (res && res.data) {
-        alert("payment verified")
+        console.log("payment verified data", res.data)
         return true;
       }
 
@@ -213,7 +213,12 @@ function Payment() {
       cashfree.checkout(checkoutOptions).then(async (order) => {
         console.log("payment initialized", order, orderDetails);
         await verifyPayment(orderDetails.order_id);
-        updatePaymentStatus(orderDetails);
+        if(order.code == "payment_aborted"){
+          setPayFailed(true)
+        } else{
+          setPayFailed(false)
+          updatePaymentStatus(orderDetails);
+        }
       })
     } catch (error) {
       console.log(error);
