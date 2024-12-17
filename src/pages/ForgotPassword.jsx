@@ -44,7 +44,7 @@ function SignIn() {
                 </form>
 
                 <div className="dont-have">
-                  <p className="m-0"><Link to="/sign-in">Sign In</Link></p>
+                  <p className="m-0"><Link to="/admin/sign-in">Sign In</Link></p>
                 </div>
               </div>
             </div>
