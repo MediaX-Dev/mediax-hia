@@ -347,7 +347,7 @@ function SignIn() {
                                                                                            {otpLoading ? 'Verify Code...' : 'Verify Code'}
                                                                                     </button>
                                                                                     <div className="forgot-pass text-center fs-3 mt-1">
-                                                                             <a onClick={verifyOtp}>Resend OTP</a>
+                                                                             <a onClick={sendOtp}>Resend OTP</a>
                                                                       </div>
                                                                              </div>
                                                                       </>
