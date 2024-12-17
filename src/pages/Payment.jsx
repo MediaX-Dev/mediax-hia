@@ -216,6 +216,7 @@ function Payment() {
         console.log(order.error.code)
         if(order.error.code == "payment_aborted"){
           setPayFailed(true)
+          setLoading(false)
         } else{
           setPayFailed(false)
           setLoading(false)

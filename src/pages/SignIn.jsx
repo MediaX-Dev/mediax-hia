@@ -340,12 +340,15 @@ function SignIn() {
                                                                              </div>
                                                                              <div className="mt-4">
                                                                                     <OtpInput OTPLength={6} value={otp} onChange={setOtp} otpType="number" className="d-flex justify-content-center" autoFocus disabled={false}></OtpInput>
+                                                                                    
                                                                                     {/* <input type="number" className="form-control" value={phone} placeholder="Enter Your number" onChange={(phone) => setPhone(phone.target.value)} /> */}
                                                                                     <div id="recaptcha"></div>
-                                                                                    <button type="submit" className="th-btn mt-3 fill w-100" onClick={verifyOtp}>
+                                                                                    <button type="submit" className="th-btn mt-3 fill w-100 mb-0" onClick={verifyOtp}>
                                                                                            {otpLoading ? 'Verify Code...' : 'Verify Code'}
                                                                                     </button>
-
+                                                                                    <div className="forgot-pass text-center fs-3 mt-1">
+                                                                             <a onClick={verifyOtp}>Resend OTP</a>
+                                                                      </div>
                                                                              </div>
                                                                       </>
                                                                ) : (<>
@@ -358,6 +361,7 @@ function SignIn() {
                                                                                     className="form-control overflow-hidden"
                                                                                     onChange={(phone) => setPhone(phone)}
                                                                              />
+
                                                                              {/* <input type="number" className="form-control" value={phone} placeholder="Enter Your number" onChange={(phone) => setPhone(phone.target.value)} /> */}
                                                                              <div id="recaptcha"></div>
                                                                              <button type="submit" className="th-btn mt-3 fill w-100" onClick={sendOtp}>
