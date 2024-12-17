@@ -404,7 +404,7 @@ function Dashboard() {
                                     </div>
                                 </div>
                             </section>
-                            <section className='bg-white'>
+                            {/* <section className='bg-white'>
                             <hr className='my-5' />
                                 <div className="container-xxl bg-white">
                                     <div className="row justify-content-center">
@@ -426,7 +426,7 @@ function Dashboard() {
                                     </div>
                                 </div>
                                 <hr className='my-5' />
-                            </section>
+                            </section> */}
                         </div>
                     </div>
                 </div>
