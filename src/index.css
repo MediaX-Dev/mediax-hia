@@ -568,8 +568,13 @@ form .mb-3 {
     font-weight: 400;
     line-height: 144%;
     /* text-transform: capitalize; */
+    transition: .5s;
+    cursor: pointer;
 }
-
+.form-control.disabled{
+    background-color: gainsboro;
+    cursor: not-allowed;
+}
 .react-datepicker-wrapper {
     width: 100%;
 }

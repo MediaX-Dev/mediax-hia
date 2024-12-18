@@ -22,7 +22,7 @@ function Footer() {
                   <li><a href="https://www.instagram.com/happeningin.agra/" target='_blank'><img src={Instagram} alt="" className="w-100" /></a></li>
                   <li><a href="https://www.youtube.com/@happeninginagra" target='_blank'><img src={Youtube} alt="" className="w-100" /></a></li>
                   <li><a href="https://www.facebook.com/happeningin.agra" target='_blank'><img src={Facebook} alt="" className="w-100" /></a></li>
-                  <li><a href="https://www.instagram.com/happeningin.agra/" target='_blank'><img src={Moj} alt="" className="w-100" /></a></li>
+                  <li><a href="https://mojapp.in/@happeninginagra?referrer=iOS&h=UXI9jKE-yuCJbn" target='_blank'><img src={Moj} alt="" className="w-100" /></a></li>
                 </ul>
               </div>
               <p className='mt-5'>
@@ -34,10 +34,10 @@ function Footer() {
             <div className="foot-link">
               <h4>Important Links</h4>
               <ul>
-                <li><Link to='/contact-us'><i class="far fa-angle-right"></i> Contact Us</Link></li>
-                <li><Link to='/privacy-policy'><i class="far fa-angle-right"></i> Privacy policy</Link></li>
-                <li><Link to='/refund-policy'><i class="far fa-angle-right"></i> Refund and cancellation policy</Link></li>
-                <li><Link to='/terms-n-conditions'><i class="far fa-angle-right"></i> Terms & conditions</Link></li>
+                <li><a href='/contact-us'><i class="far fa-angle-right"></i> Contact Us</a></li>
+                <li><a href='/privacy-policy'><i class="far fa-angle-right"></i> Privacy policy</a></li>
+                <li><a href='/refund-policy'><i class="far fa-angle-right"></i> Refund and cancellation policy</a></li>
+                <li><a href='/terms-n-conditions'><i class="far fa-angle-right"></i> Terms & conditions</a></li>
               </ul>
             </div>
           </div>
