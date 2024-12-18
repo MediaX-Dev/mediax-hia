@@ -1379,6 +1379,7 @@ form .mb-3 {
     max-width: 400px;
     padding: 20px;
     background-color: var(--white);
+    border-radius: 10px;
 }
 
 .confirm-btn .th-btn {

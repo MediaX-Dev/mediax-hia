@@ -50,7 +50,7 @@ function Header() {
                                         <Link to='/'><img src={logo} className='w-100' alt="" /></Link>
                                     </div>
                                     <div className="nav-auth">
-                                    <a href='/#book-obituary'>
+                                    <a href='https://happeninginagra.com#book-obituary'>
                                                 <div className="sign-up">
                                                     Register now
                                                 </div>

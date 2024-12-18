@@ -177,7 +177,6 @@ function Home() {
     }
 
     function confirmDetails() {
-        setConfirmToggle(true)
         if (!prefix || !nameOfDeceased || !dateOfBirth || !dateOfDeath || !serviceTimeStart || !serviceTimeEnd || !dateOfService || !serviceAddress || !griefPersonText1 || (memoService === "Write Your Own" ? !memoService1 : !memoService)) {
             toast.error('Please Fill all the fields');
             return false;
@@ -206,8 +205,10 @@ function Home() {
             toast.error('Please Upload an image of the person in grief');
             return false;
         }
-
-        const confirm = window.confirm("Please check everything before going forward");
+        setConfirmToggle(true)
+         // Call the function or operation you want to perform
+        
+        /* const confirm = window.confirm("Please check everything before going forward");
         if (confirm) {
             document.querySelector('.boobit-img-container').style.transform = 'scale(1)';
 
@@ -215,8 +216,12 @@ function Home() {
         } else {
             // toast.error('Please check all the details')
             return false
-        }
+        } */
 
+    }
+    const confirmProceed = () =>{
+        document.querySelector('.boobit-img-container').style.transform = 'scale(1)';
+        handleClick();
     }
 
     function handleClick() {
@@ -418,12 +423,12 @@ function Home() {
                                                         </div>
                                                         <div class="boobit-life-spam">
                                                             <div class="boobit-date-of-birth">
-                                                                {dateOfBirth ? format(dateOfBirth, 'do MMMM, yyyy') : '20th April, 1883'}
+                                                                {dateOfBirth ? format(dateOfBirth, 'do MMM, yyyy') : '20th April, 1883'}
                                                                 {/* {dateOfBirth? dateOfBirth.toLocaleDateString('en-GB') : '20th April, 1883'} */}
                                                             </div>
                                                             <div class="">-</div>
                                                             <div class="boobit-date-of-death">
-                                                                {dateOfDeath ? format(dateOfDeath, 'do MMMM, yyyy') : '19th April, 1945'}
+                                                                {dateOfDeath ? format(dateOfDeath, 'do MMM, yyyy') : '19th April, 1945'}
                                                             </div>
                                                         </div>
                                                         <div class="boobit-service">
@@ -433,14 +438,14 @@ function Home() {
                                                             {memoService1 || ""}
 
                                                         </div>
-                                                        <div class="boobit-details">
+                                                        <div class="boobit-details text-center">
                                                             <div class="boobit-time">
                                                                 {serviceTimeStart ? serviceTimeStart : '10:00am'}
                                                                 &nbsp;-    {serviceTimeEnd ? serviceTimeEnd : '12:30pm'}
                                                             </div>
                                                             <div class="">|</div>
                                                             <div class="boobit-date">
-                                                                {dateOfService ? format(dateOfService, 'do MMMM, yyyy') : '20th April, 1883'}
+                                                                {dateOfService ? format(dateOfService, 'do MMM, yyyy') : '20th April, 1883'}
                                                             </div>
                                                             <div class="">|</div>
                                                             <div class="boobit-address">{serviceAddress ? serviceAddress : 'Surya Nagar Mandir, Agra'}</div>
@@ -493,7 +498,7 @@ function Home() {
                                                         onFocus={() => setIsOpen(true)}
                                                         onBlur={() => setIsOpen(false)} // Closes DatePicker when blurred
                                                         open={isOpen} // Controls the visibility
-                                                        editFormat="DD MMM, YYYY"
+                                                        // editFormat="DD MMM, YYYY"
                                                         parse={(str) => {
                                                             const date = new Date(str);
                                                             return isNaN(date) ? null : date;
@@ -734,6 +739,7 @@ function Home() {
                                         </div>
                                     </div>
 
+                                    {/* <div class="col-12 d-flex justify-content-center my-sm-4 order-md-2" onClick={confirmDetails}> */}
                                     <div class="col-12 d-flex justify-content-center my-sm-4 order-md-2" onClick={confirmDetails}>
                                         <div class="th-btn fill">Proceed</div>
                                     </div>
@@ -1165,15 +1171,15 @@ function Home() {
                 </section> */}
                 {/* <!-- Instagarm Banner Section End --> */}
 
-                {/* <div className={`confirm-toggle position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center ${confirmToggle ? 'active' : ''}`}>
+                <div className={`confirm-toggle position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center ${confirmToggle ? 'active' : ''}`}>
                     <div className="contirm-box">
                         <h4>Notice<span className="text-danger">!</span></h4>
                         <p>Please check every details you filled in and then go forward</p>
                         <div className="confirm-btn d-flex gap-3 justify-content-between">
-                            <button className="th-btn backward">Check Again</button>
-                            <button className="th-btn forward">Go Forward</button></div>
+                            <button className="th-btn backward" onClick={()=>setConfirmToggle(false)}>Check Again</button>
+                            <button className="th-btn forward" onClick={confirmProceed}>Go Forward</button></div>
                     </div>
-                </div> */}
+                </div>
             </main>
 
             {/* <!-- Footer Section Start --> */}
