@@ -13,6 +13,33 @@ function MyDatePicker() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [newSlot, setNewSlot] = useState(null);
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
+  const [minDate, setMinDate] = useState(new Date());
+
+  useEffect(() => {
+    const now = new Date();
+    const hours = now.getHours(); // Get the current hour (0-23)
+
+    // If the time is after 1 PM, disable today's date
+    if (hours >= 13) {
+      const tomorrow = new Date();
+      tomorrow.setDate(now.getDate() + 1); // Set minDate to tomorrow
+      setMinDate(tomorrow);
+    }
+
+    const auth = getAuth();
+    const fetchData = async () => {
+      const docRef = doc(db, 'listings', auth.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        if (docSnap.data().dateOfPosting !== '') {
+          navigate('/payment');
+        }
+      }
+    };
+
+    fetchData();
+  }, [navigate]);
 
   useEffect(() => {
     const auth = getAuth()
@@ -100,7 +127,7 @@ function MyDatePicker() {
                   <div className="boobit-right">
                     <form onSubmit={onSubmitDate}>
                       <div className="mb-3">
-                        <DatePicker
+                        {/* <DatePicker
                           onChange={(date) => setSelectedDate(date)}
                           selected={selectedDate}
                           dateFormat="dd/MM/yyyy"
@@ -110,6 +137,18 @@ function MyDatePicker() {
                           showMonthDropdown
                           scrollableMonthYearDropdown
                           minDate={new Date()}
+                          disabled={isDatePickerDisabled}
+                        /> */}
+                        <DatePicker
+                          onChange={(date) => setSelectedDate(date)}
+                          selected={selectedDate}
+                          dateFormat="dd/MM/yyyy"
+                          className="date form-control"
+                          placeholderText="Date of Posting"
+                          showYearDropdown
+                          showMonthDropdown
+                          scrollableMonthYearDropdown
+                          minDate={minDate}
                           disabled={isDatePickerDisabled}
                         />
                         <div className="ob-icon"><i className="fas fa-calendar-alt"></i></div>
