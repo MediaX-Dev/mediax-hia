@@ -220,6 +220,8 @@ function Payment() {
         } else{
           setPayFailed(false)
           setLoading(false)
+    navigate('/thankyou')
+
           updatePaymentStatus(orderDetails);
         }
       })
