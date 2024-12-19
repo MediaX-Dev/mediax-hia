@@ -777,8 +777,11 @@ function Home() {
                                     </div>
 
                                     {/* <div class="col-12 d-flex justify-content-center my-sm-4 order-md-2" onClick={confirmDetails}> */}
-                                    <div class="col-12 d-flex justify-content-center my-sm-4 order-md-2" onClick={confirmDetails}>
-                                        <div class="th-btn fill">Proceed</div>
+                                    <div class="col-12 d-flex justify-content-center my-sm-4 order-md-2">
+                                        <div class="th-btn fill" onClick={confirmDetails}>Proceed</div>
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-center mt-2 mt-md-0 order-md-3 need-help" >
+                                        <a href="https://wa.me/9027572020" target='_blank' className='th-btn fill yellow'>Need Help?</a>
                                     </div>
                                 </div>
                             </div>

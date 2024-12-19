@@ -98,6 +98,16 @@ p {
     color: var(--white);
     background: var(--secondary);
 }
+.th-btn.fill.yellow{
+    color: var(--black);
+    background: var(--primary); 
+    border: 1px solid var(--white);
+}
+.th-btn.fill.yellow:hover{
+    color: var(--black);
+    background: var(--white); 
+    border: 1px solid var(--primary);
+}
 
 .th-btn.fill:hover {
     background: transparent;
@@ -171,7 +181,8 @@ p {
     color: var(--white);
 }
 
-#header .sign-up {
+#header .sign-up,
+.need-help .sign-up{
     background-color: var(--primary);
     border-radius: 10px;
     padding: 12px 25px;
