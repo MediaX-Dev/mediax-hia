@@ -306,8 +306,8 @@ function Home() {
             return;
         }
         setDateOfBirth(date);
+        setIsOpen(false);
     };
-
     const handleDateOfDeathChange = (date) => {
         if (!(date instanceof Date) || isNaN(date)) {
             console.error("Invalid date selected for Date of Death.");
@@ -318,6 +318,7 @@ function Home() {
             return;
         }
         setDateOfDeath(date);
+        setIsOpenDc(false);
     };
     const handleDateOfServiceChange = (date) => {
         if (date instanceof Date && !isNaN(date)) {
@@ -325,6 +326,7 @@ function Home() {
         } else {
             console.error("Invalid date selected for Date of Service.");
         }
+        setIsOpenSc(false);
     };
 
 
@@ -797,7 +799,7 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">Your obituary post will be shared on our Instagram community page. (<a href='https://www.instagram.com/happeningin.agra/' target='_blank'>link</a>)
+                                            <p className="m-0">Your obituary post will be shared on our <a href='https://www.instagram.com/happeningin.agra/' target='_blank' className='text-decoration-underline'> Instagram community page </a>.
                                             </p>
                                         </div>
                                     </div>
@@ -808,21 +810,10 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">You can view the obituary on the posting date you selected during booking. It will be shared between 10:00 AM to 10:30 AM on our Instagram community page. (<a href='https://www.instagram.com/happeningin.agra/' target='_blank'>link</a>)
+                                            <p className="m-0">You can view the obituary on the posting date you selected during booking. It will be shared between 02:00 PM to 02:30 PM on our <a href='https://www.instagram.com/happeningin.agra/' target='_blank' className='text-decoration-underline'> Instagram community page </a>.
                                             </p>
                                         </div>
                                     </div>
-                                    {/* <div className='faq-box mb-3'>
-                                        <div className="faq-h">
-                                            <h5 className="m-0">Can I request specific posting slots or dates?
-                                            </h5>
-                                            <div className="faq-icon"><i className='fal fa-plus'></i></div>
-                                        </div>
-                                        <div className="faq-text">
-                                            <p className="m-0">While we try to accommodate preferred slots, we cannot guarantee availability. If your requested slot is unavailable, we will offer alternative options.
-                                            </p>
-                                        </div>
-                                    </div> */}
                                 </div>
                                 <div id='booking-and-submission' className='faq-tab-container mt-5 mt-md-0 d-none'>
                                     <div className='faq-box mb-3'>
@@ -832,7 +823,7 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">You can book an obituary post by visiting our obituary registration form, providing the necessary details, and making the payment through Razorpay. Once the payment is confirmed, your slot is booked.
+                                            <p className="m-0">You can book an obituary post by visiting our obituary registration form, providing the necessary details, and making the payment through Cashfree. Once the payment is confirmed, your slot is booked.
                                             </p>
                                         </div>
                                     </div>
@@ -867,7 +858,7 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">Yes, you can cancel your booking by emailing us at <a href="mailto:happeninginagra@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginagra@gmail.com</a>. However, please note that refunds are not applicable even if the booking is canceled.
+                                            <p className="m-0">Yes, you can cancel your booking by emailing us at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>. However, please note that refunds are not applicable even if the booking is canceled.
                                             </p>
                                         </div>
                                     </div>
@@ -878,7 +869,7 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">Yes, but you need to inform us of any changes via email at <a href="mailto:happeninginagra@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginagra@gmail.com</a> atleast 2 hours before the posting time. After this period, edits cannot be accommodated.
+                                            <p className="m-0">Yes, but you need to inform us of any changes via email at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a> atleast 2 hours before the posting time. After this period, edits cannot be accommodated.
                                             </p>
                                         </div>
                                     </div>
@@ -913,7 +904,7 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">Payments are processed securely through Razorpay, and we accept most major payment methods. Please note that all payments are subject to 18% GST taxation, billed by MediaX Digital Solutions.
+                                            <p className="m-0">Payments are processed securely through Cashfree, and we accept most major payment methods. Please note that all payments are subject to 18% GST taxation, billed by MediaX Digital Solutions.
                                             </p>
                                         </div>
                                     </div>
@@ -924,7 +915,7 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">Yes, all payments are subject to 18% GST as required by law, which will be included in your final bill.
+                                            <p className="m-0">No, the cost of INR. 1999 includes the 18% GST required.
                                             </p>
                                         </div>
                                     </div>
@@ -936,7 +927,7 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">We take data security seriously and implement measures to protect your information. Your payment is processed securely through Razorpay, and no payment information is stored on our servers.
+                                            <p className="m-0">We take data security seriously and implement measures to protect your information. Your payment is processed securely through Cashfree, and no payment information is stored on our servers.
                                             </p>
                                         </div>
                                     </div>
@@ -956,7 +947,7 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">Yes, you can request the deletion of your personal data after the post by contacting us at <a href="mailto:happeninginagra@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginagra@gmail.com</a>. We will process your request in accordance with our privacy policy.</p>
+                                            <p className="m-0">Yes, you can request the deletion of your personal data after the post by contacting us at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>. We will process your request in accordance with our privacy policy.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -979,7 +970,7 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">Your obituary post will be shared on our Instagram community page. (<a href='https://www.instagram.com/happeningin.agra/' target='_blank'>link</a>)
+                                                        <p className="m-0">Your obituary post will be shared on our <a href='https://www.instagram.com/happeningin.agra/' target='_blank' className='text-decoration-underline'> Instagram community page </a>.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -990,7 +981,7 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">You can view the obituary on the posting date you selected during booking. It will be shared between 10:00 AM to 10:30 AM on our Instagram community page. (<a href='https://www.instagram.com/happeningin.agra/' target='_blank'>link</a>)
+                                                        <p className="m-0">You can view the obituary on the posting date you selected during booking. It will be shared between 02:00 PM to 02:30 PM on our <a href='https://www.instagram.com/happeningin.agra/' target='_blank' className='text-decoration-underline'> Instagram community page </a>.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1009,7 +1000,7 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">You can book an obituary post by visiting our obituary registration form, providing the necessary details, and making the payment through Razorpay. Once the payment is confirmed, your slot is booked.
+                                                        <p className="m-0">You can book an obituary post by visiting our obituary registration form, providing the necessary details, and making the payment through Cashfree. Once the payment is confirmed, your slot is booked.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1049,7 +1040,7 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">Yes, you can cancel your booking by emailing us at <a href="mailto:happeninginagra@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginagra@gmail.com</a>. However, please note that refunds are not applicable even if the booking is canceled.
+                                                        <p className="m-0">Yes, you can cancel your booking by emailing us at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>. However, please note that refunds are not applicable even if the booking is canceled.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1060,7 +1051,7 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">Yes, but you need to inform us of any changes via email at <a href="mailto:happeninginagra@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginagra@gmail.com</a> atleast 2 hours before the posting time. After this period, edits cannot be accommodated.
+                                                        <p className="m-0">Yes, but you need to inform us of any changes via email at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a> atleast 2 hours before the posting time. After this period, edits cannot be accommodated.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1100,7 +1091,7 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">Payments are processed securely through Razorpay, and we accept most major payment methods. Please note that all payments are subject to 18% GST taxation, billed by MediaX Digital Solutions.
+                                                        <p className="m-0">Payments are processed securely through Cashfree, and we accept most major payment methods. Please note that all payments are subject to 18% GST taxation, billed by MediaX Digital Solutions.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1111,7 +1102,7 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">Yes, all payments are subject to 18% GST as required by law, which will be included in your final bill.
+                                                        <p className="m-0">No, the cost of INR. 1999 includes the 18% GST required.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1128,7 +1119,7 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">We take data security seriously and implement measures to protect your information. Your payment is processed securely through Razorpay, and no payment information is stored on our servers.
+                                                        <p className="m-0">We take data security seriously and implement measures to protect your information. Your payment is processed securely through Cashfree, and no payment information is stored on our servers.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1148,7 +1139,7 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">Yes, you can request the deletion of your personal data after the post by contacting us at <a href="mailto:happeninginagra@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginagra@gmail.com</a>. We will process your request in accordance with our privacy policy.</p>
+                                                        <p className="m-0">Yes, you can request the deletion of your personal data after the post by contacting us at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>. We will process your request in accordance with our privacy policy.</p>
                                                     </div>
                                                 </div>
                                             </div>

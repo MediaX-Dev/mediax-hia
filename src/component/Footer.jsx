@@ -66,7 +66,7 @@ function Footer() {
                     <div className="">happeninginagra.com</div>
                   </a>
                 </li>
-                <li><a className='d-flex gap-2 align-items-center' href='https://maps.app.goo.gl/Ps2SXdYNkQiH3pLB6' target='_blank'>
+                {/* <li><a className='d-flex gap-2 align-items-center' href='https://maps.app.goo.gl/Ps2SXdYNkQiH3pLB6' target='_blank'>
                   <div className="">
                     <i class="fas fa-map-marker-alt"></i>
                   </div>
@@ -75,7 +75,7 @@ function Footer() {
                     Sanjay Place, Agra, Uttar Pradesh:- 282002 
                   </div>
                 </a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
