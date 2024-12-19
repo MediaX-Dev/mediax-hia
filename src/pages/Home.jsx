@@ -206,8 +206,8 @@ function Home() {
             return false;
         }
         setConfirmToggle(true)
-         // Call the function or operation you want to perform
-        
+        // Call the function or operation you want to perform
+
         /* const confirm = window.confirm("Please check everything before going forward");
         if (confirm) {
             document.querySelector('.boobit-img-container').style.transform = 'scale(1)';
@@ -219,7 +219,7 @@ function Home() {
         } */
 
     }
-    const confirmProceed = () =>{
+    const confirmProceed = () => {
         document.querySelector('.boobit-img-container').style.transform = 'scale(1)';
         handleClick();
     }
@@ -267,6 +267,7 @@ function Home() {
         "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM", "10:30 PM", "11:00 PM",
         "11:30 PM"
     ]);
+    const [filteredEndTimeOptions, setFilteredEndTimeOptions] = useState(endTimeOptions);
 
     // Helper function to convert time to minutes
     const timeToMinutes = (time) => {
@@ -280,6 +281,19 @@ function Home() {
         setServiceTimeEnd(prevEndTime => filteredOptions.includes(prevEndTime) ? prevEndTime : "00");
         return filteredOptions;
     };
+    useEffect(() => {
+        if (serviceTimeStart !== "00") {
+            const filteredOptions = endTimeOptions.filter(
+                option => timeToMinutes(option) > timeToMinutes(serviceTimeStart)
+            );
+            setFilteredEndTimeOptions(filteredOptions);
+
+            // Reset `serviceTimeEnd` if it's not in the updated options
+            if (!filteredOptions.includes(serviceTimeEnd)) {
+                setServiceTimeEnd("00");
+            }
+        }
+    }, [serviceTimeStart]);
 
     /*  const handleDateOfBirthChange = (date) => {
          if (dateOfDeath && date > dateOfDeath) {
@@ -549,7 +563,17 @@ function Home() {
                                                     </div>
                                                 </div>
                                                 <div className="mb-3">
-                                                    <select className="form-select" value={serviceTimeStart} onChange={(e) => setServiceTimeStart(e.target.value)}>
+                                                    {/*  <select className="form-select" value={serviceTimeStart} onChange={(e) => setServiceTimeStart(e.target.value)}>
+                                                        <option value="00" disabled>Time of Service (Start)</option>
+                                                        {endTimeOptions.map(time => (
+                                                            <option key={time} value={time}>{time}</option>
+                                                        ))}
+                                                    </select> */}
+                                                    <select
+                                                        className="form-select"
+                                                        value={serviceTimeStart}
+                                                        onChange={(e) => setServiceTimeStart(e.target.value)}
+                                                    >
                                                         <option value="00" disabled>Time of Service (Start)</option>
                                                         {endTimeOptions.map(time => (
                                                             <option key={time} value={time}>{time}</option>
@@ -557,9 +581,20 @@ function Home() {
                                                     </select>
                                                 </div>
                                                 <div className="mb-3">
-                                                    <select className="form-select" value={serviceTimeEnd} onChange={(e) => setServiceTimeEnd(e.target.value)}>
+                                                    {/*  <select className="form-select" value={serviceTimeEnd} onChange={(e) => setServiceTimeEnd(e.target.value)}>
                                                         <option value="00" disabled>Time of Service (End)</option>
                                                         {endTimeOptions.map(time => (
+                                                            <option key={time} value={time}>{time}</option>
+                                                        ))}
+                                                    </select> */}
+
+                                                    <select
+                                                        className="form-select"
+                                                        value={serviceTimeEnd}
+                                                        onChange={(e) => setServiceTimeEnd(e.target.value)}
+                                                    >
+                                                        <option value="00" disabled>Time of Service (End)</option>
+                                                        {filteredEndTimeOptions.map(time => (
                                                             <option key={time} value={time}>{time}</option>
                                                         ))}
                                                     </select>
@@ -959,7 +994,7 @@ function Home() {
                                     <ul className='list-unstyled p-0 m-0'>
                                         <li>
                                             <div className='sidebar-btn sidebar-btn-mob d-flex justify-content-between align-items-center active' data-faq='viewing-and-scheduling'>
-                                                <span className="posi-text">Viewing and Scheduling</span>  
+                                                <span className="posi-text">Viewing and Scheduling</span>
                                                 <i className='far fa-angle-right'></i>
                                             </div>
                                             <div id='viewing-and-scheduling' className={`faq-tab-container`} >
@@ -989,7 +1024,7 @@ function Home() {
                                         </li>
                                         <li>
                                             <div className='sidebar-btn sidebar-btn-mob d-flex justify-content-between align-items-center' data-faq='booking-and-submission'>
-                                                <span className="posi-text" >Booking and Submission</span>  
+                                                <span className="posi-text" >Booking and Submission</span>
                                                 <i className='far fa-angle-right'></i>
                                             </div>
                                             <div id='booking-and-submission' className={`faq-tab-container`}>
@@ -1167,7 +1202,7 @@ function Home() {
                         <h4>Notice<span className="text-danger">!</span></h4>
                         <p>Please check every details you filled in and then go forward</p>
                         <div className="confirm-btn d-flex gap-3 justify-content-between">
-                            <button className="th-btn backward" onClick={()=>setConfirmToggle(false)}>Check Again</button>
+                            <button className="th-btn backward" onClick={() => setConfirmToggle(false)}>Check Again</button>
                             <button className="th-btn forward" onClick={confirmProceed}>Go Forward</button></div>
                     </div>
                 </div>
