@@ -214,7 +214,7 @@ function Payment() {
         console.log("payment initialized", order, orderDetails);
         await verifyPayment(orderDetails.order_id);
         console.log(order.error.code)
-        if(order.error.code == "payment_aborted"){
+        if(order?.error?.code == "payment_aborted"){
           setPayFailed(true)
           setLoading(false)
         } else{
