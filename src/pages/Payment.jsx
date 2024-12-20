@@ -218,6 +218,7 @@ function Payment() {
           setPayFailed(true)
           setLoading(false)
         } else{
+          navigate('/thankyou')
           setPayFailed(false)
           setLoading(false)
           updatePaymentStatus(orderDetails);
@@ -240,7 +241,7 @@ function Payment() {
         orderDetails: order
       })
       // toast.success('Payment successfully!');
-      navigate('/thankyou')
+      
     } catch (error) {
       toast.error('Something went wrong');
     }
