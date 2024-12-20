@@ -161,7 +161,7 @@ function Payment() {
         console.log(error)
       }
     } */
-  /* const verifyPayment = async (orderId) => {
+  const verifyPayment = async (orderId) => {
     try {
 
       const res = await axios.post("https://mediax-hia-backend-delta.vercel.app/verify", {
@@ -177,22 +177,7 @@ function Payment() {
       console.log(error)
       return false;
     }
-  } */
-    const verifyPayment = async (orderId) => {
-      try {
-        const res = await axios.post("https://mediax-hia-backend-delta.vercel.app/verify", { orderId });
-        if (res && res.data && res.data.status === "success") {
-          console.log("Payment verified:", res.data);
-          return true;
-        }
-        console.error("Payment verification failed:", res.data);
-        return false;
-      } catch (error) {
-        console.error("Verification error:", error);
-        return false;
-      }
-    };
-    
+  }
 
   /* const handleClick = async (e) => {
     e.preventDefault()
@@ -217,130 +202,38 @@ function Payment() {
     }
 
   } */
-  // const handleClick = async () => {
-  //   try {
-  //     setLoading(true)
-  //     let sessionId = await getSessionId()
-  //     let checkoutOptions = {
-  //       paymentSessionId: sessionId,
-  //       redirectTarget: "_modal",
-  //     }
-  //     cashfree.checkout(checkoutOptions).then(async (order) => {
-  //       console.log("payment initialized", order, orderDetails);
-  //       await verifyPayment(orderDetails.order_id);
-  //       console.log(order.error.code)
-  //       if(order.error.code == "payment_aborted"){
-  //         setPayFailed(true)
-  //         setLoading(false)
-  //       } else{
-  //         navigate('/thankyou')
-  //         setPayFailed(false)
-  //         setLoading(false)
-  //         updatePaymentStatus(orderDetails);
-  //       }
-  //     })
-  //   } catch (error) {
-  //     console.log(error);
-  //     alert(JSON.stringify(error));
-  //   }
-  // }
-  // const handleClick = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const sessionId = await getSessionId();
-  //     const checkoutOptions = {
-  //       paymentSessionId: sessionId,
-  //       redirectTarget: "_modal",
-  //     };
-
-  //     cashfree.checkout(checkoutOptions).then(async (order) => {
-  //       console.log("Payment initialized", order, orderDetails);
-
-  //       if (order?.error?.code === "payment_aborted") {
-  //         setPayFailed(true);
-  //         setLoading(false);
-  //         toast.error("Payment was aborted.");
-  //       } else {
-  //         const paymentVerified = await verifyPayment(orderDetails?.order_id);
-  //         if (paymentVerified) {
-  //           await updatePaymentStatus(orderDetails);
-  //           toast.success("Payment successful!");
-  //           setPayFailed(false);
-  //           navigate("/thankyou");
-  //         } else {
-  //           setPayFailed(true);
-  //           toast.error("Payment verification failed.");
-  //         }
-  //         setLoading(false);
-  //       }
-  //     }).catch((error) => {
-  //       console.error("Error in cashfree checkout:", error);
-  //       setLoading(false);
-  //       toast.error("Payment process failed. Please try again.");
-  //     });
-  //   } catch (error) {
-  //     console.error("Error during payment initialization:", error);
-  //     setLoading(false);
-  //     toast.error("Something went wrong. Please try again.");
-  //   }
-  // };
-
   const handleClick = async () => {
     try {
-      setLoading(true);
-  
-      // Step 1: Get the payment session ID
-      const sessionId = await getSessionId();
-  
-      // Step 2: Configure the checkout options
-      const checkoutOptions = {
+      setLoading(true)
+      let sessionId = await getSessionId()
+      let checkoutOptions = {
         paymentSessionId: sessionId,
         redirectTarget: "_modal",
-      };
-  
-      // Step 3: Trigger the Cashfree checkout
-      cashfree.checkout(checkoutOptions).then(async (response) => {
-        console.log("Payment response:", response);
-  
-        // Check for payment success
-        if (response?.error) {
-          console.error("Payment error:", response.error);
-          setPayFailed(true);
-          setLoading(false);
-          toast.error("Payment failed or aborted.");
-        } else {
-          console.log("Payment successful. Verifying...");
-          const paymentVerified = await verifyPayment(orderDetails?.order_id);
-  
-          if (paymentVerified) {
-            await updatePaymentStatus(orderDetails);
-            toast.success("Payment successful!");
-            setPayFailed(false);
-            setLoading(false);
-            navigate("/thankyou");
-          } else {
-            console.error("Payment verification failed.");
-            setPayFailed(true);
-            setLoading(false);
-            toast.error("Payment verification failed.");
-          }
+      }
+      cashfree.checkout(checkoutOptions).then(async (order) => {
+        console.log("payment initialized", order, orderDetails);
+        await verifyPayment(orderDetails.order_id);
+        console.log(order.error.code)
+        if(order.error.code == "payment_aborted"){
+          setPayFailed(true)
+          setLoading(false)
+        } else{
+          setPayFailed(false)
+          setLoading(false)
+    navigate('/thankyou')
+
+          updatePaymentStatus(orderDetails);
         }
-      }).catch((error) => {
-        console.error("Cashfree checkout error:", error);
-        setPayFailed(true);
-        setLoading(false);
-        toast.error("Payment process failed. Please try again.");
-      });
+      })
     } catch (error) {
-      console.error("Error during payment initialization:", error);
-      setPayFailed(true);
-      setLoading(false);
-      toast.error("Something went wrong. Please try again.");
+      console.log(error);
+      alert(JSON.stringify(error));
     }
-  };
-  
+  }
+
   const updatePaymentStatus = async (order) => {
     // toast.success(resId)
+    navigate('/thankyou')
     try {
       const auth = getAuth()
       const docRef = doc(db, 'listings', auth.currentUser.uid)
@@ -350,7 +243,7 @@ function Payment() {
         orderDetails: order
       })
       // toast.success('Payment successfully!');
-
+      navigate('/thankyou')
     } catch (error) {
       toast.error('Something went wrong');
     }
