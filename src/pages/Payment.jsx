@@ -229,47 +229,101 @@ function Payment() {
   //     alert(JSON.stringify(error));
   //   }
   // }
+  // const handleClick = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const sessionId = await getSessionId();
+  //     const checkoutOptions = {
+  //       paymentSessionId: sessionId,
+  //       redirectTarget: "_modal",
+  //     };
+
+  //     cashfree.checkout(checkoutOptions).then(async (order) => {
+  //       console.log("Payment initialized", order, orderDetails);
+
+  //       if (order?.error?.code === "payment_aborted") {
+  //         setPayFailed(true);
+  //         setLoading(false);
+  //         toast.error("Payment was aborted.");
+  //       } else {
+  //         const paymentVerified = await verifyPayment(orderDetails?.order_id);
+  //         if (paymentVerified) {
+  //           await updatePaymentStatus(orderDetails);
+  //           toast.success("Payment successful!");
+  //           setPayFailed(false);
+  //           navigate("/thankyou");
+  //         } else {
+  //           setPayFailed(true);
+  //           toast.error("Payment verification failed.");
+  //         }
+  //         setLoading(false);
+  //       }
+  //     }).catch((error) => {
+  //       console.error("Error in cashfree checkout:", error);
+  //       setLoading(false);
+  //       toast.error("Payment process failed. Please try again.");
+  //     });
+  //   } catch (error) {
+  //     console.error("Error during payment initialization:", error);
+  //     setLoading(false);
+  //     toast.error("Something went wrong. Please try again.");
+  //   }
+  // };
+
   const handleClick = async () => {
     try {
       setLoading(true);
+  
+      // Step 1: Get the payment session ID
       const sessionId = await getSessionId();
+  
+      // Step 2: Configure the checkout options
       const checkoutOptions = {
         paymentSessionId: sessionId,
         redirectTarget: "_modal",
       };
-
-      cashfree.checkout(checkoutOptions).then(async (order) => {
-        console.log("Payment initialized", order, orderDetails);
-
-        if (order?.error?.code === "payment_aborted") {
+  
+      // Step 3: Trigger the Cashfree checkout
+      cashfree.checkout(checkoutOptions).then(async (response) => {
+        console.log("Payment response:", response);
+  
+        // Check for payment success
+        if (response?.error) {
+          console.error("Payment error:", response.error);
           setPayFailed(true);
           setLoading(false);
-          toast.error("Payment was aborted.");
+          toast.error("Payment failed or aborted.");
         } else {
+          console.log("Payment successful. Verifying...");
           const paymentVerified = await verifyPayment(orderDetails?.order_id);
+  
           if (paymentVerified) {
             await updatePaymentStatus(orderDetails);
             toast.success("Payment successful!");
             setPayFailed(false);
+            setLoading(false);
             navigate("/thankyou");
           } else {
+            console.error("Payment verification failed.");
             setPayFailed(true);
+            setLoading(false);
             toast.error("Payment verification failed.");
           }
-          setLoading(false);
         }
       }).catch((error) => {
-        console.error("Error in cashfree checkout:", error);
+        console.error("Cashfree checkout error:", error);
+        setPayFailed(true);
         setLoading(false);
         toast.error("Payment process failed. Please try again.");
       });
     } catch (error) {
       console.error("Error during payment initialization:", error);
+      setPayFailed(true);
       setLoading(false);
       toast.error("Something went wrong. Please try again.");
     }
   };
-
+  
   const updatePaymentStatus = async (order) => {
     // toast.success(resId)
     try {
