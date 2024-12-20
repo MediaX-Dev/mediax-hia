@@ -220,8 +220,6 @@ function Payment() {
         } else{
           setPayFailed(false)
           setLoading(false)
-    navigate('/thankyou')
-
           updatePaymentStatus(orderDetails);
         }
       })
@@ -233,7 +231,6 @@ function Payment() {
 
   const updatePaymentStatus = async (order) => {
     // toast.success(resId)
-    navigate('/thankyou')
     try {
       const auth = getAuth()
       const docRef = doc(db, 'listings', auth.currentUser.uid)
