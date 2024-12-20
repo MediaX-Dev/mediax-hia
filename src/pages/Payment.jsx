@@ -161,7 +161,7 @@ function Payment() {
         console.log(error)
       }
     } */
-  const verifyPayment = async (orderId) => {
+/*   const verifyPayment = async (orderId) => {
     try {
 
       const res = await axios.post("https://mediax-hia-backend-delta.vercel.app/verify", {
@@ -177,7 +177,8 @@ function Payment() {
       console.log(error)
       return false;
     }
-  }
+  } */
+
 
   /* const handleClick = async (e) => {
     e.preventDefault()
@@ -202,6 +203,20 @@ function Payment() {
     }
 
   } */
+
+    const verifyPayment = async (orderId) => {
+      try {
+        const res = await axios.post(
+          "https://mediax-hia-backend-delta.vercel.app/verify",
+          { orderId } // Ensure this matches backend expectations
+        );
+        return res.data.status === "success";
+      } catch (error) {
+        console.error("Verification error:", error.response?.data || error.message);
+        return false;
+      }
+    };
+    
   const handleClick = async () => {
     try {
       setLoading(true)
@@ -213,17 +228,16 @@ function Payment() {
       cashfree.checkout(checkoutOptions).then(async (order) => {
         console.log("payment initialized", order);
         console.log("Order Details", orderDetails);
+        await verifyPayment(orderDetails.order_id);
         console.log(order.error.code)
         console.log("payment done",order.paymentDetails.paymentMessage)
-        await verifyPayment(orderDetails.order_id);
         if (order.error.code == "payment_aborted") {
           setPayFailed(true)
           setLoading(false)
-        } else {
+        } else if(order.paymentDetails.paymentMessage == "Payment finished. Check status.") {
           setPayFailed(false)
           setLoading(false)
           navigate('/thankyou')
-
           updatePaymentStatus(orderDetails);
         }
       })
