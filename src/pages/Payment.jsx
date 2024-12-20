@@ -161,7 +161,7 @@ function Payment() {
         console.log(error)
       }
     } */
-  const verifyPayment = async (orderId) => {
+  /* const verifyPayment = async (orderId) => {
     try {
 
       const res = await axios.post("https://mediax-hia-backend-delta.vercel.app/verify", {
@@ -177,7 +177,22 @@ function Payment() {
       console.log(error)
       return false;
     }
-  }
+  } */
+    const verifyPayment = async (orderId) => {
+      try {
+        const res = await axios.post("https://mediax-hia-backend-delta.vercel.app/verify", { orderId });
+        if (res && res.data && res.data.status === "success") {
+          console.log("Payment verified:", res.data);
+          return true;
+        }
+        console.error("Payment verification failed:", res.data);
+        return false;
+      } catch (error) {
+        console.error("Verification error:", error);
+        return false;
+      }
+    };
+    
 
   /* const handleClick = async (e) => {
     e.preventDefault()
