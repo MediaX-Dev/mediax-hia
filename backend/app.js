@@ -53,7 +53,7 @@ app.get('/payment', (req, res) => {
     try {
 
         let request = {
-            "order_amount": 1999,
+            "order_amount": 1,
             "order_currency": "INR",
             "order_id": generateOrderId(),
             "customer_details": {
