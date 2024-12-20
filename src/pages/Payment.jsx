@@ -211,16 +211,18 @@ function Payment() {
         redirectTarget: "_modal",
       }
       cashfree.checkout(checkoutOptions).then(async (order) => {
-        console.log("payment initialized", order, orderDetails);
-        await verifyPayment(orderDetails.order_id);
+        console.log("payment initialized", order);
+        console.log("Order Details", orderDetails);
         console.log(order.error.code)
-        if(order?.error?.code == "payment_aborted"){
+        console.log("payment done",order.paymentDetails.paymentMessage)
+        await verifyPayment(orderDetails.order_id);
+        if (order.error.code == "payment_aborted") {
           setPayFailed(true)
           setLoading(false)
-        } else{
+        } else {
           setPayFailed(false)
           setLoading(false)
-    navigate('/thankyou')
+          navigate('/thankyou')
 
           updatePaymentStatus(orderDetails);
         }
