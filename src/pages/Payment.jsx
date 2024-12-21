@@ -210,7 +210,7 @@ function Payment() {
           "https://mediax-hia-backend-delta.vercel.app/verify",
           { orderId } // Ensure this matches backend expectations
         );
-        return res.data.status === "success";
+        return res?.order_status === "PAID";
       } catch (error) {
         console.error("Verification error:", error.response?.data || error.message);
         return false;
