@@ -102,8 +102,8 @@ app.post('/verify', async (req, res) => {
                 "Accept-Encoding": "gzip, compress, deflate, br"
             }
         }).then((response) => {
-            console.log('response', response);
-            res.json(response);
+            console.log('response', response.data);
+            res.json(response.data);
         })
         .catch((error) => {
             // console.error('Error fetching order', error);
