@@ -228,17 +228,20 @@ function Payment() {
       cashfree.checkout(checkoutOptions).then(async (order) => {
         console.log("payment initialized", order);
         console.log("Order Details", orderDetails);
-        await verifyPayment(orderDetails.order_id);
-        console.log(order.error.code)
-        console.log("payment done",order.paymentDetails.paymentMessage)
-        if (order.error.code == "payment_aborted") {
-          setPayFailed(true)
-          setLoading(false)
-        } else if(order.paymentDetails.paymentMessage == "Payment finished. Check status.") {
+        console.log("payment done",order?.paymentDetails?.paymentMessage);
+
+        const isPaid = await verifyPayment(orderDetails.order_id);
+
+        if(isPaid) {
           setPayFailed(false)
           setLoading(false)
           navigate('/thankyou')
           updatePaymentStatus(orderDetails);
+        }
+        else {
+          console.log(order?.error?.code);
+          setPayFailed(true)
+          setLoading(false)
         }
       })
     } catch (error) {
