@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const {
     Cashfree
 } = require('cashfree-pg');
+const axios = require('axios');
 
 
 require('dotenv').config();
@@ -90,7 +91,17 @@ app.post('/verify', async (req, res) => {
         let { orderId } = req.body;
         console.log('orderId', orderId);
 
-        Cashfree.PGOrderFetchPayments("2023-08-01", orderId).then((response) => {
+        axios({
+            method: 'get',
+            url: `https://api.cashfree.com/pg/orders/${orderId}`,
+            headers: {
+                "Accept": "application/json, text/plain, */*",
+                "x-client-secret": Cashfree.XClientSecret,
+                "x-client-id": Cashfree.XClientId,
+                "x-api-version": "2023-08-01",
+                "Accept-Encoding": "gzip, compress, deflate, br"
+            }
+        }).then((response) => {
             console.log('response', response);
             res.json(response);
         })
@@ -99,6 +110,15 @@ app.post('/verify', async (req, res) => {
             res.status(400);
             res.json({"errObj": error, "message": "from .catch of promise"});
         });
+        // Cashfree.PGOrderFetchPayments("2023-08-01", orderId).then((response) => {
+        //     console.log('response', response);
+        //     res.json(response);
+        // })
+        // .catch((error) => {
+        //     // console.error('Error fetching order', error);
+        //     res.status(400);
+        //     res.json({"errObj": error, "message": "from .catch of promise"});
+        // });
         
         // Cashfree.PGFetchOrder("2022-09-01", orderId).then((response) => {
         //     res.json(response);
