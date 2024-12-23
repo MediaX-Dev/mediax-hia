@@ -54,14 +54,14 @@ app.get('/payment', (req, res) => {
     try {
 
         let request = {
-            "order_amount": 1,
+            "order_amount": 1999,
             "order_currency": "INR",
             "order_id": generateOrderId(),
             "customer_details": {
                 "customer_id": `${Date.now()}`,
                 "customer_phone": "9999999999",
-                "customer_name": "Web Codder",
-                "customer_email": "webcodder@example.com"
+                "customer_name": "Mediax Hia",
+                "customer_email": "jitender.rathore@mediax.com"
             },
         }
 
