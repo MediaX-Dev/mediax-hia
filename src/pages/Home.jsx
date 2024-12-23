@@ -622,7 +622,7 @@ function Home() {
                                                 <div class="">
                                                     <div class="greif">
                                                         <div class="d-flex gap-3 mb-3">
-                                                            <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText1} onChange={(prev) => setGriefPersonText1(prev.target.value)} placeholder="Person in Greif" />
+                                                            <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText1} onChange={(prev) => setGriefPersonText1(prev.target.value)} placeholder="Person in Grief" />
                                                             <select class="form-select" name="prefix" id="prefix-select" value={griefPersonRelation1} onChange={(rel) => setGriefPersonRelation1(rel.target.value)}>
                                                                 <option value="Relation" selected>Relation</option>
                                                                 <option value="Father">Father</option>
@@ -644,7 +644,7 @@ function Home() {
                                                         </div>
                                                         {griefPerson1 && (
                                                             <div class="d-flex gap-3 mb-3">
-                                                                <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText2} onChange={(prev) => setGriefPersonText2(prev.target.value)} placeholder="Person in Greif" />
+                                                                <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText2} onChange={(prev) => setGriefPersonText2(prev.target.value)} placeholder="Person in Grief" />
                                                                 <select class="form-select" name="prefix" id="prefix-select" value={griefPersonRelation2} onChange={(rel) => setGriefPersonRelation2(rel.target.value)}>
                                                                     <option value="Relation" selected>Relation</option>
                                                                     <option value="Father">Father</option>
@@ -666,7 +666,7 @@ function Home() {
                                                             </div>)}
                                                         {griefPerson2 && (
                                                             <div class="d-flex gap-3 mb-3">
-                                                                <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText3} onChange={(prev) => setGriefPersonText3(prev.target.value)} placeholder="Person in Greif" />
+                                                                <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText3} onChange={(prev) => setGriefPersonText3(prev.target.value)} placeholder="Person in Grief" />
                                                                 <select class="form-select" name="prefix" id="prefix-select" value={griefPersonRelation3} onChange={(rel) => setGriefPersonRelation3(rel.target.value)}>
                                                                     <option value="Relation" selected>Relation</option>
                                                                     <option value="Father">Father</option>
@@ -688,7 +688,7 @@ function Home() {
                                                             </div>)}
                                                         {griefPerson3 && (
                                                             <div class="d-flex gap-3 mb-3">
-                                                                <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText4} onChange={(prev) => setGriefPersonText4(prev.target.value)} placeholder="Person in Greif" />
+                                                                <input type="text" class="form-control greif-input" maxLength="15" value={griefPersonText4} onChange={(prev) => setGriefPersonText4(prev.target.value)} placeholder="Person in Grief" />
                                                                 <select class="form-select" name="prefix" id="prefix-select" value={griefPersonRelation4} onChange={(rel) => setGriefPersonRelation4(rel.target.value)}>
                                                                     <option value="Relation" selected>Relation</option>
                                                                     <option value="Father">Father</option>
