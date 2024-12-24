@@ -232,8 +232,9 @@
         max-height: 280px;
     }
     .crop-img-container img{
-        max-height: 280px;
-        margin: auto;
+        max-width: 250px;
+        max-height: 250px;
+        margin: auto !important;
     }
 }
 
