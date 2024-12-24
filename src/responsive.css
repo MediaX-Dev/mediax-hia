@@ -228,6 +228,13 @@
     .hero{
         padding: 100px 0px;
     }
+    .crop-img-container{
+        max-height: 280px;
+    }
+    .crop-img-container img{
+        max-height: 280px;
+        margin: auto;
+    }
 }
 
 
