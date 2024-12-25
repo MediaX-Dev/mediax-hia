@@ -233,7 +233,8 @@
     }
     .ReactCrop__child-wrapper>img, .ReactCrop__child-wrapper>video,
     .crop-img-container img{
-        max-width: 250px;
+        width: auto !important;
+        max-width: auto !important;
         max-height: 250px !important;
         /* margin: auto !important; */
     }
