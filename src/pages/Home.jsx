@@ -722,7 +722,7 @@ function Home() {
                                                             <div className="crop-img-container">
                                                                 <i class="fal fa-times" onClick={() => setUploadImgSrc('')}></i>
                                                                 {error && (<p className='text-danger'>{error}</p>)}
-                                                                <ReactCrop
+                                                                <ReactCrop className="w-auto h-100"
                                                                     crop={crop}
                                                                     onChange={
                                                                         (pixelCrop, percentCrop) => setCrop(percentCrop)
