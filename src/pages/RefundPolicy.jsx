@@ -35,7 +35,7 @@ function RefundPolicy() {
                 </div>
                 <div className="">
                   <h3>Cancellation</h3>
-                  <p className='m-0'>To cancel your slot, please email us at <a href="mailto:happeninginagra@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginagra@gmail.com</a>. Note that no refunds will be issued in this case.</p>
+                  <p className='m-0'>To cancel your slot, please email us at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>. Note that no refunds will be issued in this case.</p>
                 </div>
               </div>
             </div>

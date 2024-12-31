@@ -39,12 +39,12 @@ function ContactUs() {
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="mailto:hello@mediax.co.in">
+                                        <a href="mailto:happeninginofficial@gmail.com">
                                             <span className="con-icon">
                                                 <i class="fas fa-paper-plane"></i>
                                             </span>
                                             <span className="con-text">
-                                                <p className="m-0"> <b>Email:</b> info@yoursite.com</p>
+                                                <p className="m-0"> <b>Email:</b> happeninginofficial@gmail.com</p>
                                             </span>
                                         </a>
                                     </li>

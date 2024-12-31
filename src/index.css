@@ -111,6 +111,8 @@ p {
 
 .th-btn.fill:hover {
     background: transparent;
+    border: 1px solid var(--secondary);
+    
     color: var(--secondary);
 }
 

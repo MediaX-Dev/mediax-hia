@@ -57,17 +57,17 @@ function PrivacyPolicy() {
                         <p>We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction.</p>
                       </li>
                       <li>
-                        <p>Payment information is processed securely through Razorpay, and we do not store any payment details on our servers.</p>
+                        <p>Payment information is processed securely through Cashfree, and we do not store any payment details on our servers.</p>
                       </li>
                     </ul>
                   </div>
                   <div className="mb-3 mb-md-5">
                     <h3>Your Rights</h3>
-                    <p>You have the right to access, correct, or delete your personal information. To exercise these rights, please contact us at <a href="mailto:happeninginagra@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginagra@gmail.com</a>.</p>
+                    <p>You have the right to access, correct, or delete your personal information. To exercise these rights, please contact us at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>.</p>
                   </div>
                   <div className="">
                     <h3>Contact Information</h3>
-                    <p className='m-0'>For any questions regarding the privacy policy, please contact us at <a href="mailto:happeninginagra@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginagra@gmail.com</a>.</p>
+                    <p className='m-0'>For any questions regarding the privacy policy, please contact us at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>.</p>
                   </div>
                 </div>
               </div>

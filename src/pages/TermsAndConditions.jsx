@@ -41,7 +41,8 @@ function TermsAndConditions() {
                       <p>Users are responsible for reviewing the details before final submission.</p>
                     </li>
                     <li>
-                      <p>If you need to change any information, please email us at least 16 hours before the posting time, which is 10 am, at <a href="mailto:happeninginagra@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginagra@gmail.com</a>.</p>
+                      <p>If you wish to request changes to any information provided for publication, you must email us at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a> by 12:00 PM on the scheduled day of posting (at least 2 hours
+before the content goes live). Requests received after this deadline may not be accommodated</p>
                     </li>
                   </ul>
                 </div>
@@ -60,7 +61,7 @@ function TermsAndConditions() {
                   <h3>Payment</h3>
                   <ul>
                     <li>
-                      <p>Users must make a payment through Razorpay to confirm their slot for the obituary posting.</p>
+                      <p>Users must make a payment through Cashfree to confirm their slot for the obituary posting.</p>
                     </li>
                     <li>
                       <p>All payments are subject to our refund policy.</p>
@@ -92,7 +93,7 @@ function TermsAndConditions() {
                 </div>
                 <div className="mb-3 mb-md-5">
                   <h3>Contact Information</h3>
-                  <p> For any questions regarding the terms and conditions, please contact us at <a href="mailto:happeninginagra@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginagra@gmail.com</a>.</p>
+                  <p> For any questions regarding the terms and conditions, please contact us at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>.</p>
                 </div>
 
                 {/* 
@@ -114,11 +115,11 @@ function TermsAndConditions() {
                 </div>
                 <div className="mb-3 mb-md-5">
                   <h3>Your Rights</h3>
-                  <p>You have the right to access, correct, or delete your personal information. To exercise these rights, please contact us at happeninginagra@gmail.com.</p>
+                  <p>You have the right to access, correct, or delete your personal information. To exercise these rights, please contact us at happeninginofficial@gmail.com.</p>
                 </div>
                 <div className="">
                   <h3>Contact Information</h3>
-                  <p className='m-0'>For any questions regarding the privacy policy, please contact us at happeninginagra@gmail.com.</p>
+                  <p className='m-0'>For any questions regarding the privacy policy, please contact us at happeninginofficial@gmail.com.</p>
                 </div> */}
               </div>
             </div>

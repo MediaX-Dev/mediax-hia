@@ -104,10 +104,10 @@ function Home() {
                 setListingDataCheck(docSnap.data())
                 if (docSnap.data().listingCreated && docSnap.data().dateOfPosting === '') {
                     navigate('/pick-date')
-                    toast.success('you have created obitury last time you visited')
+                    // toast.success('you have created obitury last time you visited')
                 } else if (!docSnap.data().payment) {
                     navigate('/payment')
-                    toast.success('you have booked slot obitury last time you visited')
+                    // toast.success('you have booked slot obitury last time you visited')
                 }
             }
         }
@@ -178,28 +178,28 @@ function Home() {
 
     function confirmDetails() {
         if (!prefix || !nameOfDeceased || !dateOfBirth || !dateOfDeath || !serviceTimeStart || !serviceTimeEnd || !dateOfService || !serviceAddress || !griefPersonText1 || (memoService === "Write Your Own" ? !memoService1 : !memoService)) {
-            toast.error('Please Fill all the fields');
+            toast.error('Warning: All fields must be filled out.');
             return false;
         } else if (!griefPersonRelation1) {
-            toast.error('Please Select the relation with person in grief');
+            toast.error('Warning: Please select your relationship with the deceased person.');
             return false;
         } else if (griefPerson1 && !griefPersonText2) {
             toast.error('Please Fill all the fields');
             return false;
         } else if (griefPerson1 && !griefPersonRelation2) {
-            toast.error('Please Select the relation with person in grief');
+            toast.error('Warning: Please select your relationship with the deceased person.');
             return false;
         } else if (griefPerson2 && !griefPersonText3) {
             toast.error('Please Fill all the fields');
             return false;
         } else if (griefPerson2 && !griefPersonRelation3) {
-            toast.error('Please Select the relation with person in grief');
+            toast.error('Warning: Please select your relationship with the deceased person.');
             return false;
         } else if (griefPerson3 && !griefPersonText4) {
             toast.error('Please Fill all the fields');
             return false;
         } else if (griefPerson3 && !griefPersonRelation4) {
-            toast.error('Please Select the relation with person in grief');
+            toast.error('Warning: Please select your relationship with the deceased person.');
             return false;
         } else if (!imgStored) {
             toast.error('Please Upload an image of the person in grief');
@@ -220,13 +220,13 @@ function Home() {
 
     }
     const confirmProceed = () => {
-        document.querySelector('.boobit-img-container').style.transform = 'scale(1)';
+        document.querySelector('.boobit-img-container').style.transform = 'scale(4)';
         handleClick();
     }
 
     function handleClick() {
         html2canvas(document.querySelector('#boobit-img'),
-            { scale: 2 }
+            { scale: 4 }
             // {  scale: 2, width: 1080, height: 1080 }
         ).then(function (canvas) {
             canvas.toBlob(function (blob) {
@@ -415,7 +415,9 @@ function Home() {
                                 <div class="row justify-content-center">
                                     <div class="col-lg-6 col-md-8 col-sm-10">
                                         <h2 class="text-center mb-2 mb-sm-4">{listingExists ? 'You have created Obituary' : 'Create a Personalized Tribute'}</h2>
-                                        <p class="text-center mb-0 mb-sm-4">Share the details and upload a photo to craft a meaningful obituary. Simply complete the form below to get started.</p>
+                                        <p class="text-center mb-0 mb-sm-4">
+                                        {listingExists ? '' : 'Share the details and upload a photo to craft a meaningful obituary. Simply complete the form below to get started.'}
+                                        </p>
                                         {/* {listingExists &&(<div className="text-center"><img src={listingDataCheck?.imageUrl} alt="" className="w-50" /></div>)} */}
                                     </div>
                                 </div>
@@ -705,7 +707,7 @@ function Home() {
                                                                     <option value="Mother-in-law">Mother-in-law</option>
                                                                     <option value="Friend">Friend</option>
                                                                 </select>
-                                                                <div class="form-control w-auto" onClick={() => { alert("You can not mention more than 4 person in grief") }}><i
+                                                                <div class="form-control w-auto" onClick={() => { alert("The maximum number of people allowed in the grief section is 4.") }}><i
                                                                     class="fal fa-plus fa-plus-icon"></i></div>
                                                             </div>)}
                                                     </div>
@@ -832,23 +834,23 @@ function Home() {
                                 <div id='viewing-and-scheduling' className='faq-tab-container mt-5 mt-md-0' >
                                     <div className='faq-box mb-3'>
                                         <div className="faq-h">
-                                            <h5 className="m-0">Where can I see my obituary posting?
+                                            <h5 className="m-0"> Where can I view the obituary I booked?
                                             </h5>
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">Your obituary post will be shared on our <a href='https://www.instagram.com/happeningin.agra/' target='_blank' className='text-decoration-underline'> Instagram community page </a>.
+                                            <p className="m-0">Your obituary post will be shared on our <a href='https://www.instagram.com/happeningin.agra/' target='_blank' className='text-decoration-underline'>Instagram community page</a>.
                                             </p>
                                         </div>
                                     </div>
                                     <div className='faq-box mb-3'>
                                         <div className="faq-h">
-                                            <h5 className="m-0">When will my obituary be posted?
+                                            <h5 className="m-0">When will the obituary be published?
                                             </h5>
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">You can view the obituary on the posting date you selected during booking. It will be shared between 02:00 PM to 02:30 PM on our <a href='https://www.instagram.com/happeningin.agra/' target='_blank' className='text-decoration-underline'> Instagram community page </a>.
+                                            <p className="m-0">You can view the obituary on the posting date you selected during booking. It will be shared between 02:00 PM to 02:30 PM on our <a href='https://www.instagram.com/happeningin.agra/' target='_blank' className='text-decoration-underline'>Instagram community page</a>.
                                             </p>
                                         </div>
                                     </div>
@@ -861,7 +863,9 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">You can book an obituary post by visiting our obituary registration form, providing the necessary details, and making the payment through Cashfree. Once the payment is confirmed, your slot is booked.
+                                            <p className="m-0">You can book an obituary post by visiting our<a href="#book-obituary" className='text-decoration-underline d-inline'>obituary registration form,</a> providing the
+necessary details, and making the payment through Cashfree. Once the payment is
+confirmed, your slot is booked.
                                             </p>
                                         </div>
                                     </div>
@@ -872,7 +876,10 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">You need to provide your name, email/phone number, and details about the deceased, including names of those in mourning. These details will be used to prepare the post.
+                                            <p className="m-0">You will need to provide the following information: the name of the deceased, their birth
+and death dates, the service name, venue and date, as well as the names of those in
+mourning. These details will be used to prepare the obituary post.
+
                                             </p>
                                         </div>
                                     </div>
@@ -907,18 +914,23 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">Yes, but you need to inform us of any changes via email at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a> atleast 2 hours before the posting time. After this period, edits cannot be accommodated.
+                                            <p className="m-0">
+                                                Yes, changes can be made, kindly inform us via email at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>
+by 12:00 PM on the date of posting (2 hours before the content goes live). Unfortunately,
+edits cannot be accommodated after this time.
                                             </p>
                                         </div>
                                     </div>
                                     <div className='faq-box mb-3'>
                                         <div className="faq-h">
-                                            <h5 className="m-0">What happens if I need to change the date of the obituary post?
+                                            <h5 className="m-0">Can I reschedule my posting?
                                             </h5>
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">If you need to reschedule, please inform us via email at least 16 hours before the original posting time. We will try our best to offer an alternative slot, subject to availability.
+                                            <p className="m-0">Yes, if you need to reschedule, please inform us via email at
+<a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a> by 12:00 PM on the date of posting. We will do our best
+to offer an alternative slot, subject to availability.
                                             </p>
                                         </div>
                                     </div>
@@ -931,18 +943,20 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">We do not offer refunds once a slot is booked. Even if you choose to cancel your booking, refunds will not be provided.
+                                            <p className="m-0">We do not offer refunds once a slot is booked. Cancellations will not be eligible for a refund.
                                             </p>
                                         </div>
                                     </div>
                                     <div className='faq-box mb-3'>
                                         <div className="faq-h">
-                                            <h5 className="m-0">What payment methods do you accept?
+                                            <h5 className="m-0">Payments are processed securely through Cashfree. 
                                             </h5>
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">Payments are processed securely through Cashfree, and we accept most major payment methods. Please note that all payments are subject to 18% GST taxation, billed by MediaX Digital Solutions.
+                                            <p className="m-0">We accept most major payment
+methods, including UPI, credit card, net banking, wallets, and other standard payment
+methods
                                             </p>
                                         </div>
                                     </div>
@@ -985,7 +999,10 @@ function Home() {
                                             <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                         </div>
                                         <div className="faq-text">
-                                            <p className="m-0">Yes, you can request the deletion of your personal data after the post by contacting us at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>. We will process your request in accordance with our privacy policy.</p>
+                                            <p className="m-0">
+                                                You can request the deletion of your personal data after the post by reaching out to us at
+<a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>. We will handle your request in accordance with our
+privacy policy.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1003,23 +1020,23 @@ function Home() {
                                             <div id='viewing-and-scheduling' className={`faq-tab-container`} >
                                                 <div className='faq-box mb-3'>
                                                     <div className="faq-h">
-                                                        <h5 className="m-0">Where can I see my obituary posting?
+                                                        <h5 className="m-0"> Where can I view the obituary I booked?
                                                         </h5>
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">Your obituary post will be shared on our <a href='https://www.instagram.com/happeningin.agra/' target='_blank' className='text-decoration-underline'> Instagram community page </a>.
+                                                        <p className="m-0">Your obituary post will be shared on our <a href='https://www.instagram.com/happeningin.agra/' target='_blank' className='text-decoration-underline'>Instagram community page</a>.
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <div className='faq-box mb-3'>
                                                     <div className="faq-h">
-                                                        <h5 className="m-0">When will my obituary be posted?
+                                                        <h5 className="m-0">When will the obituary be published?
                                                         </h5>
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">You can view the obituary on the posting date you selected during booking. It will be shared between 02:00 PM to 02:30 PM on our <a href='https://www.instagram.com/happeningin.agra/' target='_blank' className='text-decoration-underline'> Instagram community page </a>.
+                                                        <p className="m-0">You can view the obituary on the posting date you selected during booking. It will be shared between 02:00 PM to 02:30 PM on our <a href='https://www.instagram.com/happeningin.agra/' target='_blank' className='text-decoration-underline'>Instagram community page</a>.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1038,7 +1055,9 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">You can book an obituary post by visiting our obituary registration form, providing the necessary details, and making the payment through Cashfree. Once the payment is confirmed, your slot is booked.
+                                                        <p className="m-0">You can book an obituary post by visiting our <a href="#book-obituary" className='text-decoration-underline'>obituary registration form,</a> providing the
+necessary details, and making the payment through Cashfree. Once the payment is
+confirmed, your slot is booked.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1049,7 +1068,10 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">You need to provide your name, email/phone number, and details about the deceased, including names of those in mourning. These details will be used to prepare the post.
+                                                        <p className="m-0">You will need to provide the following information: the name of the deceased, their birth
+and death dates, the service name, venue and date, as well as the names of those in
+mourning. These details will be used to prepare the obituary post.
+
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1089,18 +1111,23 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">Yes, but you need to inform us of any changes via email at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a> atleast 2 hours before the posting time. After this period, edits cannot be accommodated.
+                                                        <p className="m-0">
+                                                            Yes, changes can be made, kindly inform us via email at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>
+by 12:00 PM on the date of posting (2 hours before the content goes live). Unfortunately,
+edits cannot be accommodated after this time.
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <div className='faq-box mb-3'>
                                                     <div className="faq-h">
-                                                        <h5 className="m-0">What happens if I need to change the date of the obituary post?
+                                                        <h5 className="m-0">Can I reschedule my posting?
                                                         </h5>
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">If you need to reschedule, please inform us via email at least 16 hours before the original posting time. We will try our best to offer an alternative slot, subject to availability.
+                                                        <p className="m-0">Yes, if you need to reschedule, please inform us via email at
+<a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a> by 12:00 PM on the date of posting. We will do our best
+to offer an alternative slot, subject to availability.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1118,18 +1145,20 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">We do not offer refunds once a slot is booked. Even if you choose to cancel your booking, refunds will not be provided.
+                                                        <p className="m-0">We do not offer refunds once a slot is booked. Cancellations will not be eligible for a refund.
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <div className='faq-box mb-3'>
                                                     <div className="faq-h">
-                                                        <h5 className="m-0">What payment methods do you accept?
+                                                        <h5 className="m-0">Payments are processed securely through Cashfree. 
                                                         </h5>
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">Payments are processed securely through Cashfree, and we accept most major payment methods. Please note that all payments are subject to 18% GST taxation, billed by MediaX Digital Solutions.
+                                                        <p className="m-0">We accept most major payment
+methods, including UPI, credit card, net banking, wallets, and other standard payment
+methods
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1177,7 +1206,10 @@ function Home() {
                                                         <div className="faq-icon"><i className='fal fa-plus'></i></div>
                                                     </div>
                                                     <div className="faq-text">
-                                                        <p className="m-0">Yes, you can request the deletion of your personal data after the post by contacting us at <a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>. We will process your request in accordance with our privacy policy.</p>
+                                                        <p className="m-0">
+                                                            You can request the deletion of your personal data after the post by reaching out to us at
+<a href="mailto:happeninginofficial@gmail.com" className="d-inline text-decoration-underline" target='_blank'>happeninginofficial@gmail.com</a>. We will handle your request in accordance with our
+privacy policy.</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1202,11 +1234,12 @@ function Home() {
 
                 <div className={`confirm-toggle position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center ${confirmToggle ? 'active' : ''}`}>
                     <div className="contirm-box">
-                        <h4>Notice<span className="text-danger">!</span></h4>
-                        <p>Please check every details you filled in and then go forward</p>
+                        {/* <h4>Notice<span className="text-danger">!</span></h4> */}
+                        <p>Please review all the details you have entered. Close dialog & scroll up to view the
+automatically generated obituary.</p>
                         <div className="confirm-btn d-flex gap-3 justify-content-between">
-                            <button className="th-btn backward" onClick={() => setConfirmToggle(false)}>Check Again</button>
-                            <button className="th-btn forward" onClick={confirmProceed}>Go Forward</button></div>
+                            <button className="th-btn fill yellow" onClick={() => setConfirmToggle(false)}>Close</button>
+                            <button className="th-btn fill" onClick={confirmProceed}>Proceed</button></div>
                     </div>
                 </div>
             </main>
