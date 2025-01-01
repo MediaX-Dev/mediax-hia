@@ -220,13 +220,13 @@ function Home() {
 
     }
     const confirmProceed = () => {
-        document.querySelector('.boobit-img-container').style.transform = 'scale(4)';
+        document.querySelector('.boobit-img-container').style.transform = 'scale(1)';
         handleClick();
     }
 
     function handleClick() {
         html2canvas(document.querySelector('#boobit-img'),
-            { scale: 4 }
+            { scale: 6 }
             // {  scale: 2, width: 1080, height: 1080 }
         ).then(function (canvas) {
             canvas.toBlob(function (blob) {
