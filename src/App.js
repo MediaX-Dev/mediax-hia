@@ -57,9 +57,10 @@ function App() {
         <Route path="/terms-n-conditions" element={<TermsAndConditions />} />
         <Route path="/phone-auth" element={<PhoneAuth />} />
         <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/thankyou" element={<Privateroute />}>
+        {/* <Route path="/thankyou" element={<Privateroute />}>
           <Route path="/thankyou" element={<Thankyou />} />
-        </Route>
+        </Route> */}
+          <Route path="/thankyou" element={<Thankyou />} />
       </Routes>
       <ToastContainer />
     </Router>
