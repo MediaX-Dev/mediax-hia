@@ -121,7 +121,7 @@ function Thankyou() {
                             <h1>Thank You for Your Submission!</h1>
                             <p className="mb-0 mt-3">
                                 Your booking for <b>{listingData.dateOfPosting ? formatDate(listingData.dateOfPosting) : "N/A"}</b> 
-                                has been confirmed under slot <b>{listingData.slotNumber || "N/A"}</b> and will be posted between
+                                 has been confirmed under slot <b>{listingData.slotNumber || "N/A"}</b> and will be posted between
                                 2:00 and 2:30 PM.
                             </p>
                         </div>
