@@ -202,7 +202,7 @@ function Home() {
             toast.error('Warning: Please select your relationship with the deceased person.');
             return false;
         } else if (!imgStored) {
-            toast.error('Please Upload an image of the person in grief');
+            toast.error('Ensure to upload an image of the deceased.');
             return false;
         }
         setConfirmToggle(true)
@@ -720,7 +720,7 @@ function Home() {
                                                         id="up-img" onInput={fileUpload} />
 
                                                     {uploadImgSrc && (
-                                                        <div className="crop-img">
+                                                        <div className="crop-img overflow-y-scroll">
                                                             <div className="crop-img-container">
                                                                 <i class="fal fa-times" onClick={() => setUploadImgSrc('')}></i>
                                                                 {error && (<p className='text-danger'>{error}</p>)}
