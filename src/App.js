@@ -38,13 +38,7 @@ function App() {
           <Route path="/pick-date" element={<MyDatePicker />} />
         </Route>
         {/* <Route path="/pick-date" element={<MyDatePicker />} /> */}
-        <Route path="/payment" element={<Privateroute />}>
-          <Route path="/payment" element={<Payment />} />
-        </Route>
-        {/* <Route path="/payment" element={<Payment />} /> */}
-        <Route path="/admin/dashboard" element={<Privaterouteadmin />}>
-          <Route path="/admin/dashboard" element={<Dashboard />} />
-        </Route>
+        
         <Route path="/admin/edit/:listingId" element={<Privaterouteadmin />}>
           <Route path="/admin/edit/:listingId" element={<EditListing />} />
         </Route>

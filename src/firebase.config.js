@@ -11,8 +11,8 @@ const firebaseConfig = {
   authDomain: "happening-in-agra.firebaseapp.com",
   projectId: "happening-in-agra",
   storageBucket: "happening-in-agra.appspot.com",
-  messagingSenderId: "151723413804",
-  appId: "1:151723413804:web:50d97f3ae222a2e57f5c89"
+  messagingSenderId: "1517234104",
+  appId: "1:151723413804:web:50d97f3ae22257f5c89"
 };
 
 // Initialize Firebase
