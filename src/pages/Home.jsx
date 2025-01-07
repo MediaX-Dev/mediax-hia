@@ -151,30 +151,7 @@ function Home() {
     }, []); // Empty dependency array ensures this runs only on component mount
 
 
-    function fileUpload(event) {
-        var file = event.target.files[0];
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                const imgElement = new Image();
-                imgElement.src = e.target.result
-                imgElement.addEventListener('load', (e) => {
-                    const { naturalWidth, naturalHeight } = e.currentTarget;
-                    if (naturalWidth < 150 || naturalHeight < 150) {
-                        setError('Image must be at least 150 x 150 pixels')
-                        return setUploadImgSrc(" ")
-                    }
-                })
-                // $('#boobit-up-img').attr('src', e.target.result);
-                // console.log(e.target.result)
-                setError('')
-                // console.log(e.target.result)
-                setUploadImgSrc(e.target.result)
-                setImgStored(true)
-            }
-            reader.readAsDataURL(file);
-        }
-    }
+    
 
     function confirmDetails() {
         if (!prefix || !nameOfDeceased || !dateOfBirth || !dateOfDeath || !serviceTimeStart || !serviceTimeEnd || !dateOfService || !serviceAddress || !griefPersonText1 || (memoService === "Write Your Own" ? !memoService1 : !memoService)) {
